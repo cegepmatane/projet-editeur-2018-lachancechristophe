@@ -23,7 +23,7 @@
 			Grid.Row="0"
 			HorizontalAlignment="Stretch"
 			VerticalAlignment="Stretch"
-			Margin="791,156,8,215" />
+			Margin="791,194,8,177" />
 		<Button
 			x:Name="boutonCharger"
 			Content="Charger"
@@ -53,7 +53,7 @@
 			Grid.Row="0"
 			HorizontalAlignment="Stretch"
 			VerticalAlignment="Stretch"
-			Margin="791,73,8,298" />
+			Margin="791,110.5,8,260.5" />
 		<Button
 			x:Name="boutonHerbe"
 			Canvas.Top="72"
@@ -63,7 +63,7 @@
 			Grid.Row="0"
 			HorizontalAlignment="Stretch"
 			VerticalAlignment="Stretch"
-			Margin="708,73,91,298" />
+			Margin="708,110,91,261" />
 		<Button
 			x:Name="boutonPlage"
 			Content="Plage"
@@ -73,7 +73,7 @@
 			Grid.Row="0"
 			HorizontalAlignment="Stretch"
 			VerticalAlignment="Stretch"
-			Margin="708,156,91,215" />
+			Margin="708,194,91,177" />
 		<Button
 			Canvas.Top="72"
 			Canvas.Left="735"
@@ -114,5 +114,27 @@
 			VerticalAlignment="Stretch"
 			Margin="791,357,8,14"
 			Content="Effacer" />
+		<Button
+			x:Name="boutonAnnuler"
+			Canvas.Top="6"
+			Canvas.Left="708"
+			Grid.Column="0"
+			Grid.Row="0"
+			VerticalAlignment="Stretch"
+			Width="75"
+			HorizontalAlignment="Left"
+			Margin="708,46,0,369"
+			Content="Annuler" />
+		<Button
+			x:Name="boutonRefaire"
+			Canvas.Top="6"
+			Canvas.Left="791"
+			Grid.Column="0"
+			Grid.Row="0"
+			VerticalAlignment="Stretch"
+			Width="75"
+			HorizontalAlignment="Right"
+			Margin="0,46,8,369"
+			Content="Refaire" />
 	</Grid>
 </Window>
