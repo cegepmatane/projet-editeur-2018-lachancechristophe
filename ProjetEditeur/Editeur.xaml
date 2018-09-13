@@ -104,5 +104,15 @@
 			HorizontalAlignment="Stretch"
 			VerticalAlignment="Stretch"
 			Margin="708,274,91,97" />
+		<Button
+			x:Name="boutonEffacer"
+			Canvas.Top="72"
+			Canvas.Left="791"
+			Grid.Column="0"
+			Grid.Row="0"
+			HorizontalAlignment="Stretch"
+			VerticalAlignment="Stretch"
+			Margin="791,357,8,14"
+			Content="Effacer" />
 	</Grid>
 </Window>
