@@ -94,5 +94,11 @@ namespace ProjetEditeur
     
     public class Epee : Artefact
     {
+    	public Epee(){}
+    	
+    	public override string ExporterXML()
+	    {
+    		return "<artefact>epee</artefact>";
+    	}
     }
 }
