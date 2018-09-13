@@ -9,7 +9,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
+using System.Xml;
+using System.IO;
 
 namespace ProjetEditeur
 {
@@ -30,55 +31,51 @@ namespace ProjetEditeur
 			return instance;
 		}
 		
-		public List<Tuile> parserListeTuileXML(string listeTuileXML)
+		public Carte parserListeTuileXML(string listeTuileXML)
 		{
-			XElement listeTuilesRacine = XElement.Parse(listeTuileXML);
-			//Console.WriteLine("Objet XElement : " + listePersonnagesRacine);
+			Carte carteImportee = new Carte();
+			
+			XmlReaderSettings settings = new XmlReaderSettings();
+					
 			List<Tuile> listeTuiles = new List<Tuile>();
 			
-			foreach(XElement element in listeTuilesRacine.Elements())
+			using (XmlReader reader = XmlReader.Create(new StringReader(listeTuileXML), settings)) 
 			{
-				//Console.WriteLine("Element " + element);
-				XElement typeElement = element.Element("type");
-				//Console.WriteLine("Type : " + typeElement);
-				string type = typeElement.Value; // equivalent de .innerHTML en JavaScript
-				//Console.WriteLine("Type : " + type);
-				
-				Tuile tile = null;
-				if(type.CompareTo("foret") == 0)
-				{
-					tile = new Foret();
-				}
-				else if(type.CompareTo("plage") == 0)
-				{
-					tile = new Plage();
-				}
-				else if(type.CompareTo("mer") == 0)
-				{
-					tile = new Mer();
-				}
-				else if(type.CompareTo("herbe") == 0)
-				{
-					tile = new Herbe();
-				}
-				else if(type.CompareTo("epee") == 0)
-				{
-					tile = new Epee();	
-				}
-				else if(type.CompareTo("bateau") == 0)
-				{
-					tile = new Bateau();	
-				}
-				else if(type.CompareTo("joyau") == 0)
-				{
-					tile = new Joyau();
-				}
-				if(tile != null) listeTuiles.Add(tile);
-				// les ajouter a une liste quelconque
-			}
-			
-			return listeTuiles;
-		
+				 while (reader.Read() && reader.Read())
+			     {
+				 	Tuile tile = null;
+		            switch (reader.Name)
+		            {
+		                case "foret":
+		                    tile = new Foret();
+		                    break;
+		                case "plage":
+		                   	tile = new Plage();
+		                    break;
+		                case "mer":
+		                    tile = new Mer();
+		                    break;
+		                case "herbe":
+		                    tile = new Herbe();
+		                    break;
+		                case "epee":
+		                    tile = new Epee();
+		                    break;
+		                case "joyau":
+		                    tile = new Joyau();
+		                    break;
+		                case "bateau":
+		                    tile = new Bateau();
+		                    break;
+		                default:
+		                    Console.WriteLine("Other node {0} with value {1}",
+		                                    reader.NodeType, reader.Value);
+		                    break;
+		            }
+		            carteImportee.ajouterTuile(tile);
+		        }
+			}	
+			return carteImportee;
 		}
 	}
 }

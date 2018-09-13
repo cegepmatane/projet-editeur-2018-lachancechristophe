@@ -25,5 +25,25 @@ namespace ProjetEditeur
 		public void ajouterTuile(Tuile tuileAjoutee){
 			listeTuiles.Add(tuileAjoutee);
 		}
+		
+		public List<Tuile> getListeTuiles()
+		{
+			return listeTuiles;
+		}
+		
+		public string ExporterXML()
+		{
+			string chaineXML = "";
+			foreach(Tuile tuile in listeTuiles)
+			{
+				chaineXML += tuile.ExporterXML();
+			}
+			return chaineXML;
+		}
+		
+		public void ImporterListe(List<Tuile> liste)
+		{
+			listeTuiles = liste;
+		}
 	}
 }

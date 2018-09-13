@@ -7,6 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.Windows.Media;
 
 namespace ProjetEditeur
 {
@@ -16,49 +17,65 @@ namespace ProjetEditeur
 	
 	abstract public class Tuile
     {
+		protected Color couleur;
+		
     	public virtual string ExporterXML()
 	    {
 	        return "<tuile>Tuile invalide</tuile>\n";
 	    }
+    	
+    	public Color getCouleur(){ return couleur; }
     }
 
     public class Plage : Tuile
     {
-    	public Plage(){}
+    	public Plage()
+    	{
+    		couleur = Colors.Beige;
+    	}
     	
     	public override string ExporterXML()
 	    {
-    		return "<tuile>plage</tuile>";
+    		return "<plage></plage>";
     	}
     }
     
     public class Mer : Tuile
     {
-    	public Mer(){}
+    	public Mer()
+    	{
+    		couleur = Colors.DarkBlue;
+    	}
     	
     	public override string ExporterXML()
 	    {
-    		return "<tuile>mer</tuile>";
+    		return "<mer></mer>";
     	}
     }
     
     public class Herbe : Tuile
     {
-    	public Herbe(){}
+    	public Herbe()
+    	{
+    		couleur = Colors.Green;
+    	}
     	
     	public override string ExporterXML()
 	    {
-    		return "<tuile>herbe</tuile>";
+    		return "<herbe></herbe>";
     	}
     }
     
     public class Foret : Tuile
     {
-    	public Foret(){}
+    	public Foret()
+    	{
+    		couleur = Colors.DarkGreen;
+    	}
     	
     	public override string ExporterXML()
 	    {
-    		return "<tuile>foret</tuile>";
+    		return "<foret></foret>";
     	}
     }
     
@@ -74,31 +91,40 @@ namespace ProjetEditeur
     
     public class Bateau : Artefact
     {
-    	public Bateau(){}
+    	public Bateau()
+    	{
+    		couleur = Colors.BlanchedAlmond;
+    	}
     	
     	public override string ExporterXML()
 	    {
-    		return "<artefact>bateau</artefact>";
+    		return "<bateau></bateau>";
     	}
     }
     
     public class Joyau : Artefact
     {
-    	public Joyau(){}
+    	public Joyau()
+    	{
+    		couleur = Colors.Gold;
+    	}
     	
     	public override string ExporterXML()
 	    {
-    		return "<artefact>joyau</artefact>";
+    		return "<joyau></joyau>";
     	}
     }
     
     public class Epee : Artefact
     {
-    	public Epee(){}
+    	public Epee()
+    	{
+    		couleur = Colors.LightGray;
+    	}
     	
     	public override string ExporterXML()
 	    {
-    		return "<artefact>epee</artefact>";
+    		return "<epee></epee>";
     	}
     }
 }
