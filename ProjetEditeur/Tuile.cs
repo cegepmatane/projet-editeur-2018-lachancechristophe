@@ -13,14 +13,8 @@ namespace ProjetEditeur
 	/// <summary>
 	/// Description of Tuiles.
 	/// </summary>
-	public class Tuiles
-	{
-		public Tuiles()
-		{
-		}
-	}
 	
-	    abstract public class Tuile
+	abstract public class Tuile
     {
     	public virtual string ExporterXML()
 	    {

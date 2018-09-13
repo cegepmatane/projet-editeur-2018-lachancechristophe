@@ -7,6 +7,9 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Xml.Linq;
 
 namespace ProjetEditeur
 {
@@ -29,7 +32,7 @@ namespace ProjetEditeur
 		
 		public List<Tuile> parserListeTuileXML(string listeTuileXML)
 		{
-			XElement listeTuilesRacine = XElement.Parse(listePersonnagesXML);
+			XElement listeTuilesRacine = XElement.Parse(listeTuileXML);
 			//Console.WriteLine("Objet XElement : " + listePersonnagesRacine);
 			List<Tuile> listeTuiles = new List<Tuile>();
 			
