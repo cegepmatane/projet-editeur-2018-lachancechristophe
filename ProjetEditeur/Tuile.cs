@@ -24,7 +24,7 @@ namespace ProjetEditeur
 	        return "<tuile>Tuile invalide</tuile>\n";
 	    }
     	
-    	public Color getCouleur(){ return couleur; }
+    	public Color GetCouleur(){ return couleur; }
     }
 
     public class Plage : Tuile

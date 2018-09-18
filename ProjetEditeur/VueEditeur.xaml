@@ -24,7 +24,8 @@
 			Grid.Row="0"
 			HorizontalAlignment="Stretch"
 			VerticalAlignment="Stretch"
-			Margin="791,194,8,177" />
+			Margin="791,194,8,177"
+			Click="boutonMer_Click" />
 		<Button
 			x:Name="boutonCharger"
 			Content="Charger"
@@ -54,7 +55,8 @@
 			Grid.Row="0"
 			HorizontalAlignment="Stretch"
 			VerticalAlignment="Stretch"
-			Margin="791,110.5,8,260.5" />
+			Margin="791,110.5,8,260.5"
+			Click="boutonForet_Click" />
 		<Button
 			x:Name="boutonHerbe"
 			Canvas.Top="72"
@@ -64,7 +66,8 @@
 			Grid.Row="0"
 			HorizontalAlignment="Stretch"
 			VerticalAlignment="Stretch"
-			Margin="708,110,91,261" />
+			Margin="708,110,91,261"
+			Click="boutonHerbe_Click" />
 		<Button
 			x:Name="boutonPlage"
 			Content="Plage"
@@ -74,7 +77,8 @@
 			Grid.Row="0"
 			HorizontalAlignment="Stretch"
 			VerticalAlignment="Stretch"
-			Margin="708,194,91,177" />
+			Margin="708,194,91,177"
+			Click="boutonPlage_Click" />
 		<Button
 			Canvas.Top="72"
 			Canvas.Left="735"

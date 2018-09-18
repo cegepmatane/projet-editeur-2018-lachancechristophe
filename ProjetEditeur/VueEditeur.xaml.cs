@@ -36,28 +36,31 @@ namespace ProjetEditeur
 		{
 			InitializeComponent();
 			
-			controlleurEditeur = new Controlleur(this);
-			
+			//Créeer une carte aléatoire
 			modeleEditeur = new Carte(true);
 			
-			AfficherCarte(modeleEditeur);
+			controlleurEditeur = new Controlleur(this, modeleEditeur);
+			
+			AfficherCarte();
 			
 		}
 		
-		public void AfficherCarte(Carte carteAffichee)
+		public void AfficherCarte()
 		{
+			canvasCarte.Children.Clear();
+			
 			int x, y;
 			x = y = 0;
 			const int largeurTuile = 50;
-			try
-			{
-				foreach(Rangee rangee in carteAffichee.GetListeRangees())
+			//try
+			//{
+				foreach(Rangee rangee in modeleEditeur.GetListeRangees())
 				{
 					foreach(Tuile tuile in rangee.GetListeTuile())
 					{
 						SolidColorBrush brosse = new SolidColorBrush();
 						Rectangle carre = new Rectangle();
-						brosse.Color = tuile.getCouleur();
+						brosse.Color = tuile.GetCouleur();
 						carre.Fill = brosse;
 						carre.Margin = new Thickness(x,y,0,0);
 						carre.Width = carre.Height = largeurTuile;
@@ -65,19 +68,52 @@ namespace ProjetEditeur
 						x += 50;
 						
 						canvasCarte.Children.Add(carre);
+						System.Console.WriteLine(x + ", " + y + "\n");
 					}
 					
 					x = 0; 
 					y += 50;
 				}
-			} catch ( Exception e) {
+			/*} catch ( Exception e) {
 				Console.WriteLine(e.Message);
-			}
+			}*/
 		}
+		
+		//https://stackoverflow.com/questions/23670612/how-i-get-the-x-and-the-y-point-of-a-image-from-a-mouseevent
 		void canvasCarte_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
-			throw new NotImplementedException();
+			//Récupérer les positions X et Y du clic par rapport au canevas
+			Point p = e.GetPosition(canvasCarte);
+		    double pixelWidth = canvasCarte.ActualWidth;
+		    double pixelHeight = canvasCarte.ActualHeight;
+		    double x = pixelWidth * p.X / canvasCarte.ActualWidth;
+		    double y = pixelHeight * p.Y / canvasCarte.ActualHeight;
+		    
+		    //Convertir ces valeurs selon les dimensions de la carte et des tuiles
+		    int nX, nY;
+		    nX = nY = 0;
+		    
+		    nX = (int) x / 50;
+		    nY = (int) y / 50;
+		    controlleurEditeur.notifierActionClicDessin(nX, nY);
 		}
+		void boutonHerbe_Click(object sender, RoutedEventArgs e)
+		{
+			controlleurEditeur.notifierActionDessinerHerbe();
+		}
+		void boutonForet_Click(object sender, RoutedEventArgs e)
+		{
+			controlleurEditeur.notifierActionDessinerForet();
+		}
+		void boutonPlage_Click(object sender, RoutedEventArgs e)
+		{
+			controlleurEditeur.notifierActionDessinerPlage();
+		}
+		void boutonMer_Click(object sender, RoutedEventArgs e)
+		{
+			controlleurEditeur.notifierActionDessinerMer();
+		}
+	
 	}
 }
 

@@ -21,42 +21,45 @@ namespace ProjetEditeur
 		private VueEditeur vueEditeur = null;
 		private Carte modeleEditeur = null;
 		
-		private TUILE tuileActive;
+		private Tuile tuileActive;
 		private JOYAU joyauActif;
 		
-		public Controlleur(VueEditeur vue)
+		public Controlleur(VueEditeur vue, Carte modele)
 		{
 			this.vueEditeur = vue;
+			this.modeleEditeur = modele;
 		}
 		
 		public void notifierActionDessinerForet()
 		{
-			this.tuileActive = TUILE.FORET;
+			tuileActive = new Foret();
 		}
 		
 		public void notifierActionDessinerHerbe()
 		{
-			this.tuileActive = TUILE.HERBE;
+			tuileActive = new Herbe();
 		}
 		
 		public void notifierActionDessinerPlage()
 		{
-			this.tuileActive = TUILE.PLAGE;
+			tuileActive = new Plage();
 		}
 		
 		public void notifierActionDessinerMer()
 		{
-			this.tuileActive = TUILE.MER;
+			tuileActive = new Mer();
 		}
 		
 		public void notifierActionEffacer()
 		{
-			this.tuileActive = TUILE.EFFACER;
+			tuileActive = new Vide();
 		}
 		
 		public void notifierActionClicDessin(int x, int y)
 		{
-			//TODO: 
+			Console.WriteLine(tuileActive.GetCouleur().ToString());
+			modeleEditeur.PlacerTuile(tuileActive, x, y);
+			vueEditeur.AfficherCarte();
 		}
 	}
 }
