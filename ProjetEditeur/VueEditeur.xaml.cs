@@ -36,8 +36,7 @@ namespace ProjetEditeur
 		{
 			InitializeComponent();
 			
-			//Créeer une carte aléatoire
-			modeleEditeur = new Carte(true);
+			modeleEditeur = new Carte(false);
 			
 			controlleurEditeur = new Controlleur(this, modeleEditeur);
 			

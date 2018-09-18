@@ -44,7 +44,7 @@ namespace ProjetEditeur
     {
     	public Mer()
     	{
-    		couleur = Colors.DarkBlue;
+    		couleur = Colors.SteelBlue;
     	}
     	
     	public override string ExporterXML()
@@ -70,7 +70,7 @@ namespace ProjetEditeur
     {
     	public Foret()
     	{
-    		couleur = Colors.DarkGreen;
+    		couleur = Colors.OliveDrab;
     	}
     	
     	public override string ExporterXML()
