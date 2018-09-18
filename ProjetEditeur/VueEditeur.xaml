@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Window
-	x:Class="ProjetEditeur.Editeur" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	x:Class="ProjetEditeur.VueEditeur" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	Title="ProjetEditeur"
 	Height="478"
 	Width="884">
@@ -13,7 +13,8 @@
 			VerticalAlignment="Top"
 			Width="700"
 			HorizontalAlignment="Left"
-			Margin="0,0.5,0,0"></Canvas>
+			Margin="0,0.5,0,0"
+			MouseLeftButtonDown="canvasCarte_MouseLeftButtonDown" />
 		<Button
 			Canvas.Top="72"
 			Canvas.Left="735"

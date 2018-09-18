@@ -33,7 +33,7 @@ namespace ProjetEditeur
 		
 		public Carte parserListeTuileXML(string listeTuileXML)
 		{
-			Carte carteImportee = new Carte();
+			Carte carteImportee = new Carte(false);
 			
 			XmlReaderSettings settings = new XmlReaderSettings();
 					
@@ -72,7 +72,7 @@ namespace ProjetEditeur
 		                                    reader.NodeType, reader.Value);
 		                    break;
 		            }
-		            carteImportee.ajouterTuile(tile);
+		            //carteImportee.ajouterTuile(tile);
 		        }
 			}	
 			return carteImportee;

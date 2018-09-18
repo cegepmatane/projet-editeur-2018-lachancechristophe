@@ -79,6 +79,19 @@ namespace ProjetEditeur
     	}
     }
     
+    public class Vide : Tuile
+    {
+    	public Vide()
+    	{
+    		couleur = Colors.Black;
+    	}
+    	
+    	public override string ExporterXML()
+	    {
+    		return "<vide></vide>";
+    	}
+    }
+    
     public class Artefact : Tuile
     {
     	public Artefact(){}
