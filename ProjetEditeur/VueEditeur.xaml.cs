@@ -112,6 +112,22 @@ namespace ProjetEditeur
 		{
 			controlleurEditeur.notifierActionDessinerMer();
 		}
+		void boutonJoyau_Click(object sender, RoutedEventArgs e)
+		{
+			controlleurEditeur.notifierActionDessinerJoyau();
+		}
+		void boutonBateau_Click(object sender, RoutedEventArgs e)
+		{
+			controlleurEditeur.notifierActionDessinerBateau();
+		}
+		void boutonEpee_Click(object sender, RoutedEventArgs e)
+		{
+			controlleurEditeur.notifierActionDessinerEpee();
+		}
+		void boutonEffacer_Click(object sender, RoutedEventArgs e)
+		{
+			controlleurEditeur.notifierActionEffacer();
+		}
 	
 	}
 }

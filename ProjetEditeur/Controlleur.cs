@@ -16,13 +16,12 @@ namespace ProjetEditeur
 	public class Controlleur
 	{
 		enum TUILE{FORET, HERBE, PLAGE, MER, EFFACER};
-		enum JOYAU{EPEE, BATEAU, JOYAU};
+		enum ARTEFACT{EPEE, BATEAU, JOYAU};
 		
-		private VueEditeur vueEditeur = null;
-		private Carte modeleEditeur = null;
+		readonly VueEditeur vueEditeur = null;
+		readonly Carte modeleEditeur = null;
 		
 		private Tuile tuileActive;
-		private JOYAU joyauActif;
 		
 		public Controlleur(VueEditeur vue, Carte modele)
 		{
@@ -53,6 +52,21 @@ namespace ProjetEditeur
 		public void notifierActionEffacer()
 		{
 			tuileActive = new Vide();
+		}
+		
+		public void notifierActionDessinerEpee()
+		{
+			tuileActive = new Epee();
+		}
+		
+		public void notifierActionDessinerBateau()
+		{
+			tuileActive = new Bateau();
+		}
+		
+		public void notifierActionDessinerJoyau()
+		{
+			tuileActive = new Joyau();
 		}
 		
 		public void notifierActionClicDessin(int x, int y)

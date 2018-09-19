@@ -106,7 +106,7 @@ namespace ProjetEditeur
     {
     	public Bateau()
     	{
-    		couleur = Colors.BlanchedAlmond;
+    		couleur = Colors.Brown;
     	}
     	
     	public override string ExporterXML()
@@ -132,7 +132,7 @@ namespace ProjetEditeur
     {
     	public Epee()
     	{
-    		couleur = Colors.LightGray;
+    		couleur = Colors.Gray;
     	}
     	
     	public override string ExporterXML()

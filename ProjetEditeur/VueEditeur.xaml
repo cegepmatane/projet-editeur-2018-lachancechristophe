@@ -88,7 +88,8 @@
 			Grid.Row="0"
 			HorizontalAlignment="Stretch"
 			VerticalAlignment="Stretch"
-			Margin="791,274,8,97" />
+			Margin="791,274,8,97"
+			Click="boutonBateau_Click" />
 		<Button
 			Canvas.Top="72"
 			Canvas.Left="735"
@@ -98,7 +99,8 @@
 			Grid.Row="0"
 			HorizontalAlignment="Stretch"
 			VerticalAlignment="Stretch"
-			Margin="708,357,91,14" />
+			Margin="708,357,91,14"
+			Click="boutonEpee_Click" />
 		<Button
 			Canvas.Top="72"
 			Canvas.Left="735"
@@ -108,7 +110,8 @@
 			Grid.Row="0"
 			HorizontalAlignment="Stretch"
 			VerticalAlignment="Stretch"
-			Margin="708,274,91,97" />
+			Margin="708,274,91,97"
+			Click="boutonJoyau_Click" />
 		<Button
 			x:Name="boutonEffacer"
 			Canvas.Top="72"
@@ -118,7 +121,8 @@
 			HorizontalAlignment="Stretch"
 			VerticalAlignment="Stretch"
 			Margin="791,357,8,14"
-			Content="Effacer" />
+			Content="Effacer"
+			Click="boutonEffacer_Click" />
 		<Button
 			x:Name="boutonAnnuler"
 			Canvas.Top="6"
