@@ -36,7 +36,7 @@ namespace ProjetEditeur
     	
     	public override string ExporterXML()
 	    {
-    		return "<plage></plage>";
+    		return "<plage/>";
     	}
     }
     
@@ -49,7 +49,7 @@ namespace ProjetEditeur
     	
     	public override string ExporterXML()
 	    {
-    		return "<mer></mer>";
+    		return "<mer/>";
     	}
     }
     
@@ -62,7 +62,7 @@ namespace ProjetEditeur
     	
     	public override string ExporterXML()
 	    {
-    		return "<herbe></herbe>";
+    		return "<herbe/>";
     	}
     }
     
@@ -75,7 +75,7 @@ namespace ProjetEditeur
     	
     	public override string ExporterXML()
 	    {
-    		return "<foret></foret>";
+    		return "<foret/>";
     	}
     }
     
@@ -88,7 +88,7 @@ namespace ProjetEditeur
     	
     	public override string ExporterXML()
 	    {
-    		return "<vide></vide>";
+    		return "<vide/>";
     	}
     }
     
@@ -106,12 +106,12 @@ namespace ProjetEditeur
     {
     	public Bateau()
     	{
-    		couleur = Colors.Brown;
+    		couleur = Colors.Wheat;
     	}
     	
     	public override string ExporterXML()
 	    {
-    		return "<bateau></bateau>";
+    		return "<bateau/>";
     	}
     }
     
@@ -124,7 +124,7 @@ namespace ProjetEditeur
     	
     	public override string ExporterXML()
 	    {
-    		return "<joyau></joyau>";
+    		return "<joyau/>";
     	}
     }
     
@@ -137,7 +137,7 @@ namespace ProjetEditeur
     	
     	public override string ExporterXML()
 	    {
-    		return "<epee></epee>";
+    		return "<epee/>";
     	}
     }
 }

@@ -45,7 +45,8 @@
 			Grid.Row="0"
 			HorizontalAlignment="Stretch"
 			VerticalAlignment="Stretch"
-			Margin="791,7,8,408" />
+			Margin="791,7,8,408"
+			Click="boutonSauver_Click" />
 		<Button
 			Canvas.Top="72"
 			x:Name="boutonForet"
@@ -67,7 +68,8 @@
 			HorizontalAlignment="Stretch"
 			VerticalAlignment="Stretch"
 			Margin="708,110,91,261"
-			Click="boutonHerbe_Click" />
+			Click="boutonHerbe_Click"
+			Background="#FFDDDDDD" />
 		<Button
 			x:Name="boutonPlage"
 			Content="Plage"

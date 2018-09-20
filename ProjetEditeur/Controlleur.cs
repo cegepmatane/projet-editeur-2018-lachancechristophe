@@ -27,53 +27,70 @@ namespace ProjetEditeur
 		{
 			this.vueEditeur = vue;
 			this.modeleEditeur = modele;
+			tuileActive = Tuiles.vide;
 		}
 		
 		public void notifierActionDessinerForet()
 		{
-			tuileActive = new Foret();
+			tuileActive = Tuiles.foret;
 		}
 		
 		public void notifierActionDessinerHerbe()
 		{
-			tuileActive = new Herbe();
+			tuileActive = Tuiles.herbe;
 		}
 		
 		public void notifierActionDessinerPlage()
 		{
-			tuileActive = new Plage();
+			tuileActive = Tuiles.plage;
 		}
 		
 		public void notifierActionDessinerMer()
 		{
-			tuileActive = new Mer();
+			tuileActive = Tuiles.mer;
 		}
 		
 		public void notifierActionEffacer()
 		{
-			tuileActive = new Vide();
+			tuileActive = Tuiles.vide;
 		}
 		
 		public void notifierActionDessinerEpee()
 		{
-			tuileActive = new Epee();
+			tuileActive = Tuiles.epee;
 		}
 		
 		public void notifierActionDessinerBateau()
 		{
-			tuileActive = new Bateau();
+			tuileActive = Tuiles.bateau;
 		}
 		
 		public void notifierActionDessinerJoyau()
 		{
-			tuileActive = new Joyau();
+			tuileActive = Tuiles.joyau;
+		}
+		
+		public void notifierActionSauvegarderXML()
+		{
+			Console.Write(modeleEditeur.ExporterXML());
 		}
 		
 		public void notifierActionClicDessin(int x, int y)
 		{
-			Console.WriteLine(tuileActive.GetCouleur().ToString());
 			modeleEditeur.PlacerTuile(tuileActive, x, y);
 			vueEditeur.AfficherCarte();
+		}
+		
+		public static class Tuiles
+		{
+			public static Foret foret = new Foret();
+			public static Herbe herbe = new Herbe();
+			public static Plage plage = new Plage();
+			public static Mer mer = new Mer();
+			public static Epee epee = new Epee();
+			public static Joyau joyau = new Joyau();
+			public static Bateau bateau = new Bateau();
+			public static Vide vide = new Vide();
 		}
 	}
 }

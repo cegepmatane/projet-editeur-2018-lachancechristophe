@@ -28,6 +28,9 @@ namespace ProjetEditeur
 	{
 		private const int HAUTEUR = 8;
 		private const int LARGEUR = 14;
+		const int LARGEUR_TUILE = 50;
+		
+		private SolidColorBrush brosseActif, brosseInactif;
 		
 		private Controlleur controlleurEditeur = null;
 		private Carte modeleEditeur = null;
@@ -42,6 +45,21 @@ namespace ProjetEditeur
 			
 			AfficherCarte();
 			
+			brosseActif = new SolidColorBrush();
+			brosseInactif = (SolidColorBrush) boutonHerbe.Background;
+			brosseActif.Color = Colors.AliceBlue;
+		}
+		
+		private void setBoutonsInactif()
+		{
+			boutonHerbe.Background = brosseInactif;
+			boutonForet.Background = brosseInactif;
+			boutonPlage.Background = brosseInactif;
+			boutonMer.Background = brosseInactif;
+			boutonJoyau.Background = brosseInactif;
+			boutonEpee.Background = brosseInactif;
+			boutonBateau.Background = brosseInactif;
+			boutonEffacer.Background = brosseInactif;
 		}
 		
 		public void AfficherCarte()
@@ -50,83 +68,88 @@ namespace ProjetEditeur
 			
 			int x, y;
 			x = y = 0;
-			const int largeurTuile = 50;
-			//try
-			//{
-				foreach(Rangee rangee in modeleEditeur.GetListeRangees())
+
+			
+			foreach(Rangee rangee in modeleEditeur.GetListeRangees())
+			{
+				foreach(Tuile tuile in rangee.GetListeTuile())
 				{
-					foreach(Tuile tuile in rangee.GetListeTuile())
-					{
-						SolidColorBrush brosse = new SolidColorBrush();
-						Rectangle carre = new Rectangle();
-						brosse.Color = tuile.GetCouleur();
-						carre.Fill = brosse;
-						carre.Margin = new Thickness(x,y,0,0);
-						carre.Width = carre.Height = largeurTuile;
-						
-						x += 50;
-						
-						canvasCarte.Children.Add(carre);
-						System.Console.WriteLine(x + ", " + y + "\n");
-					}
-					
-					x = 0; 
-					y += 50;
+					SolidColorBrush brosse = new SolidColorBrush();
+					Rectangle carre = new Rectangle();
+					brosse.Color = tuile.GetCouleur();
+					carre.Fill = brosse;
+					carre.Margin = new Thickness(x, y, 0, 0);
+					carre.Width = carre.Height = LARGEUR_TUILE;
+
+					canvasCarte.Children.Add(carre);
+					x += LARGEUR_TUILE -1; // -1 pour eviter les espaces entres les tuiles lors du rendu
 				}
-			/*} catch ( Exception e) {
-				Console.WriteLine(e.Message);
-			}*/
+				
+				x = 0; 
+				y += LARGEUR_TUILE -1; // -1 pour eviter les espaces entres les tuiles lors du rendu
+			}
 		}
 		
-		//https://stackoverflow.com/questions/23670612/how-i-get-the-x-and-the-y-point-of-a-image-from-a-mouseevent
 		void canvasCarte_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
-			//Récupérer les positions X et Y du clic par rapport au canevas
+			//Récupérer les positions X et Y du clic
 			Point p = e.GetPosition(canvasCarte);
-		    double pixelWidth = canvasCarte.ActualWidth;
-		    double pixelHeight = canvasCarte.ActualHeight;
-		    double x = pixelWidth * p.X / canvasCarte.ActualWidth;
-		    double y = pixelHeight * p.Y / canvasCarte.ActualHeight;
-		    
-		    //Convertir ces valeurs selon les dimensions de la carte et des tuiles
-		    int nX, nY;
-		    nX = nY = 0;
-		    
-		    nX = (int) x / 50;
-		    nY = (int) y / 50;
+    
+		    int nX = (int) p.X / (LARGEUR_TUILE-1);
+		    int nY = (int) p.Y / (LARGEUR_TUILE-1);
 		    controlleurEditeur.notifierActionClicDessin(nX, nY);
 		}
 		void boutonHerbe_Click(object sender, RoutedEventArgs e)
 		{
+			setBoutonsInactif();
+			boutonHerbe.Background = brosseActif;
 			controlleurEditeur.notifierActionDessinerHerbe();
 		}
 		void boutonForet_Click(object sender, RoutedEventArgs e)
 		{
+			setBoutonsInactif();
+			boutonForet.Background = brosseActif;
 			controlleurEditeur.notifierActionDessinerForet();
 		}
 		void boutonPlage_Click(object sender, RoutedEventArgs e)
 		{
+			setBoutonsInactif();
+			boutonPlage.Background = brosseActif;
 			controlleurEditeur.notifierActionDessinerPlage();
 		}
 		void boutonMer_Click(object sender, RoutedEventArgs e)
 		{
+			setBoutonsInactif();
+			boutonMer.Background = brosseActif;
 			controlleurEditeur.notifierActionDessinerMer();
 		}
 		void boutonJoyau_Click(object sender, RoutedEventArgs e)
 		{
+			setBoutonsInactif();
+			boutonJoyau.Background = brosseActif;
 			controlleurEditeur.notifierActionDessinerJoyau();
 		}
 		void boutonBateau_Click(object sender, RoutedEventArgs e)
 		{
+			setBoutonsInactif();
+			boutonBateau.Background = brosseActif;
 			controlleurEditeur.notifierActionDessinerBateau();
 		}
 		void boutonEpee_Click(object sender, RoutedEventArgs e)
 		{
+			setBoutonsInactif();
+			boutonEpee.Background = brosseActif;
 			controlleurEditeur.notifierActionDessinerEpee();
 		}
 		void boutonEffacer_Click(object sender, RoutedEventArgs e)
 		{
+			setBoutonsInactif();
+			boutonEffacer.Background = brosseActif;
 			controlleurEditeur.notifierActionEffacer();
+		}
+		void boutonSauver_Click(object sender, RoutedEventArgs e)
+		{
+			controlleurEditeur.notifierActionSauvegarderXML();
 		}
 	
 	}
