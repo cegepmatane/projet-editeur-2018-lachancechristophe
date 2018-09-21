@@ -151,6 +151,10 @@ namespace ProjetEditeur
 		{
 			controlleurEditeur.notifierActionSauvegarderXML();
 		}
+		void boutonCharger_Click(object sender, RoutedEventArgs e)
+		{
+			controlleurEditeur.notifierActionChargerXML();
+		}
 	
 	}
 }

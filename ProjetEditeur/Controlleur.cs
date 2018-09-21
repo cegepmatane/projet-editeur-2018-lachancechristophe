@@ -7,6 +7,9 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.IO;
+using System.Windows;
+using Microsoft.Win32;
 
 namespace ProjetEditeur
 {
@@ -71,8 +74,36 @@ namespace ProjetEditeur
 		}
 		
 		public void notifierActionSauvegarderXML()
+		{		
+			SaveFileDialog dialogueSauvegarde = new SaveFileDialog();  
+		   	dialogueSauvegarde.Filter = "Carte|*.xml";  
+		   	dialogueSauvegarde.Title = "Sauvegarder la carte en format XML";  
+		   	dialogueSauvegarde.ShowDialog();  
+		
+		   	// If the file name is not an empty string open it for saving.  
+		   	if(dialogueSauvegarde.FileName != "")  
+		   	{
+		   		File.WriteAllText(dialogueSauvegarde.FileName, modeleEditeur.ExporterXML());
+		   	}
+		}
+		
+		public void notifierActionChargerXML()
 		{
-			Console.Write(modeleEditeur.ExporterXML());
+			OpenFileDialog dialogueCharger = new OpenFileDialog();
+			dialogueCharger.Filter = "Carte|*.xml";
+			dialogueCharger.Title = "Charger la carte en format XML";  
+			dialogueCharger.ShowDialog();
+			
+			if(dialogueCharger.FileName != "")  
+		   	{
+				Parser ps = Parser.getInstance();
+				modeleEditeur.ImporterXML(
+					ps.parserListeTuileXML(
+						File.ReadAllText(
+							dialogueCharger.FileName)));
+				
+				vueEditeur.AfficherCarte();
+		   	}
 		}
 		
 		public void notifierActionClicDessin(int x, int y)

@@ -26,7 +26,7 @@ namespace ProjetEditeur
 			listeRangees = new List<Rangee>();
 			InitialiserCarte();
 			if(hasard)
-				CreerCarteHasard(LARGEUR, HAUTEUR);
+				CreerCarteHasard();
 		}
 		
 		private void InitialiserCarte()
@@ -46,13 +46,13 @@ namespace ProjetEditeur
 			return listeRangees;
 		}
 		
-		private void CreerCarteHasard(int largeur, int hauteur)
+		private void CreerCarteHasard()
 		{
 			Random aleatoire = new Random();
 			
-			for(int x = 0; x < largeur ; x++ ) 
+			for(int x = 0; x < LARGEUR ; x++ ) 
 			{
-				for(int y = 0; y < hauteur ; y++ ) 
+				for(int y = 0; y < HAUTEUR ; y++ ) 
 				{
 					int rng = aleatoire.Next(0, 4);
 					Console.WriteLine(rng.ToString());
@@ -78,14 +78,28 @@ namespace ProjetEditeur
 			}
 		}
 		
+		public void ImporterXML(List<Tuile> listeTuiles)
+		{
+			for(int x = 0; x < LARGEUR ; x++ ) 
+			{
+				for(int y = 0; y < HAUTEUR ; y++ ) 
+				{
+					if(listeTuiles[x + (y * LARGEUR)] != null)
+						this.PlacerTuile(listeTuiles[x + (y * LARGEUR)], x, y);
+					else
+						this.PlacerTuile(Controlleur.Tuiles.vide, x, y);
+				}
+			}
+		}
+		
 		public string ExporterXML()
 		{
-			string chaineXML = "";
+			string chaineXML = "<carte>";
 			
 			foreach(Rangee rangee in listeRangees)
 				chaineXML += rangee.ExporterXML();
 			
-			return chaineXML;
+			return chaineXML + "</carte>";
 		}
 
 	}

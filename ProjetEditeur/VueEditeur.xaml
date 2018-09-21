@@ -35,7 +35,8 @@
 			Grid.Row="0"
 			HorizontalAlignment="Stretch"
 			VerticalAlignment="Stretch"
-			Margin="708,7,91,408" />
+			Margin="708,7,91,408"
+			Click="boutonCharger_Click" />
 		<Button
 			x:Name="boutonSauver"
 			Content="Sauver"

@@ -31,51 +31,48 @@ namespace ProjetEditeur
 			return instance;
 		}
 		
-		public Carte parserListeTuileXML(string listeTuileXML)
-		{
-			Carte carteImportee = new Carte(false);
-			
-			XmlReaderSettings settings = new XmlReaderSettings();
-					
+		public List<Tuile> parserListeTuileXML(string listeTuileXML)
+		{						
 			List<Tuile> listeTuiles = new List<Tuile>();
 			
-			using (XmlReader reader = XmlReader.Create(new StringReader(listeTuileXML), settings)) 
+			using (XmlReader reader = XmlReader.Create(new StringReader(listeTuileXML))) 
 			{
-				 while (reader.Read() && reader.Read())
+				reader.Read(); 
+				 while (reader.Read())
 			     {
 				 	Tuile tile = null;
 		            switch (reader.Name)
 		            {
 		                case "foret":
-		                    tile = new Foret();
+		            		tile = Controlleur.Tuiles.foret;
 		                    break;
 		                case "plage":
-		                   	tile = new Plage();
+		                   	tile = Controlleur.Tuiles.plage;
 		                    break;
 		                case "mer":
-		                    tile = new Mer();
+		                    tile = Controlleur.Tuiles.mer;
 		                    break;
 		                case "herbe":
-		                    tile = new Herbe();
+		                    tile = Controlleur.Tuiles.herbe;
 		                    break;
 		                case "epee":
-		                    tile = new Epee();
+		                    tile = Controlleur.Tuiles.epee;
 		                    break;
 		                case "joyau":
-		                    tile = new Joyau();
+		                    tile = Controlleur.Tuiles.joyau;
 		                    break;
 		                case "bateau":
-		                    tile = new Bateau();
+		                    tile = Controlleur.Tuiles.bateau;
 		                    break;
 		                default:
 		                    Console.WriteLine("Other node {0} with value {1}",
 		                                    reader.NodeType, reader.Value);
 		                    break;
 		            }
-		            //carteImportee.ajouterTuile(tile);
+		            listeTuiles.Add(tile);
 		        }
 			}	
-			return carteImportee;
+			return listeTuiles;
 		}
 	}
 }
