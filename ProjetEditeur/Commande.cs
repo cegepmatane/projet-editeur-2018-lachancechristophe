@@ -35,15 +35,15 @@ namespace ProjetEditeur
 		public CommandeChangerTuile(TYPE_TUILES tuileInput, Controlleur ctrl)
 		{
 			this.controlleurMaitre = ctrl;
-			this.tuileAvant = controlleurMaitre.GetTuileActive().GetType();
+			this.tuileAvant = controlleurMaitre.GetTuileActive().GetTypeTuile();
 			this.tuile = tuileInput;
 		}
 		
-		public virtual void executer()
+		public override void executer()
 		{
 			controlleurMaitre.notifierActionChangerTuile(tuile);
 		}
-		public virtual void annuler()
+		public override void annuler()
 		{
 			controlleurMaitre.notifierActionChangerTuile(tuileAvant);
 		}

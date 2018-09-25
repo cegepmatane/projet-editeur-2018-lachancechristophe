@@ -103,49 +103,50 @@ namespace ProjetEditeur
 		{
 			setBoutonsInactif();
 			boutonHerbe.Background = brosseActif;
-			controlleurEditeur.notifierActionDessinerHerbe();
+			//controlleurEditeur.notifierActionDessinerHerbe();
+			controlleurEditeur.notifierActionChangerTuile(TYPE_TUILES.HERBE);
 		}
 		void boutonForet_Click(object sender, RoutedEventArgs e)
 		{
 			setBoutonsInactif();
 			boutonForet.Background = brosseActif;
-			controlleurEditeur.notifierActionDessinerForet();
+			controlleurEditeur.notifierActionChangerTuile(TYPE_TUILES.FORET);
 		}
 		void boutonPlage_Click(object sender, RoutedEventArgs e)
 		{
 			setBoutonsInactif();
 			boutonPlage.Background = brosseActif;
-			controlleurEditeur.notifierActionDessinerPlage();
+			controlleurEditeur.notifierActionChangerTuile(TYPE_TUILES.PLAGE);
 		}
 		void boutonMer_Click(object sender, RoutedEventArgs e)
 		{
 			setBoutonsInactif();
 			boutonMer.Background = brosseActif;
-			controlleurEditeur.notifierActionDessinerMer();
+			controlleurEditeur.notifierActionChangerTuile(TYPE_TUILES.MER);
 		}
 		void boutonJoyau_Click(object sender, RoutedEventArgs e)
 		{
 			setBoutonsInactif();
 			boutonJoyau.Background = brosseActif;
-			controlleurEditeur.notifierActionDessinerJoyau();
+			controlleurEditeur.notifierActionChangerTuile(TYPE_TUILES.JOYAU);
 		}
 		void boutonBateau_Click(object sender, RoutedEventArgs e)
 		{
 			setBoutonsInactif();
 			boutonBateau.Background = brosseActif;
-			controlleurEditeur.notifierActionDessinerBateau();
+			controlleurEditeur.notifierActionChangerTuile(TYPE_TUILES.BATEAU);
 		}
 		void boutonEpee_Click(object sender, RoutedEventArgs e)
 		{
 			setBoutonsInactif();
 			boutonEpee.Background = brosseActif;
-			controlleurEditeur.notifierActionDessinerEpee();
+			controlleurEditeur.notifierActionChangerTuile(TYPE_TUILES.EPEE);
 		}
 		void boutonEffacer_Click(object sender, RoutedEventArgs e)
 		{
 			setBoutonsInactif();
 			boutonEffacer.Background = brosseActif;
-			controlleurEditeur.notifierActionEffacer();
+			controlleurEditeur.notifierActionChangerTuile(TYPE_TUILES.EFFACER);
 		}
 		void boutonSauver_Click(object sender, RoutedEventArgs e)
 		{

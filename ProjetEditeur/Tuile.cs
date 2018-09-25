@@ -27,7 +27,7 @@ namespace ProjetEditeur
 	    }
     	
     	public Color GetCouleur(){ return couleur; }
-    	public TYPE_TUILES GetType(){ return type; }
+    	public TYPE_TUILES GetTypeTuile(){ return type; }
     }
 
     public class Plage : Tuile
