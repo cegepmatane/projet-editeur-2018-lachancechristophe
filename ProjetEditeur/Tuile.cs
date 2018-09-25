@@ -14,9 +14,11 @@ namespace ProjetEditeur
 	/// <summary>
 	/// Description of Tuiles.
 	/// </summary>
+	public enum TYPE_TUILES {FORET, HERBE, PLAGE, MER, EFFACER, EPEE, BATEAU, JOYAU};
 	
 	abstract public class Tuile
     {
+		protected TYPE_TUILES type;
 		protected Color couleur;
 		
     	public virtual string ExporterXML()
@@ -25,6 +27,7 @@ namespace ProjetEditeur
 	    }
     	
     	public Color GetCouleur(){ return couleur; }
+    	public TYPE_TUILES GetType(){ return type; }
     }
 
     public class Plage : Tuile
@@ -32,6 +35,7 @@ namespace ProjetEditeur
     	public Plage()
     	{
     		couleur = Colors.Beige;
+    		type = TYPE_TUILES.PLAGE;
     	}
     	
     	public override string ExporterXML()
@@ -45,6 +49,7 @@ namespace ProjetEditeur
     	public Mer()
     	{
     		couleur = Colors.SteelBlue;
+    		type = TYPE_TUILES.MER;
     	}
     	
     	public override string ExporterXML()
@@ -58,6 +63,7 @@ namespace ProjetEditeur
     	public Herbe()
     	{
     		couleur = Colors.Green;
+    		type = TYPE_TUILES.HERBE;
     	}
     	
     	public override string ExporterXML()
@@ -71,6 +77,7 @@ namespace ProjetEditeur
     	public Foret()
     	{
     		couleur = Colors.OliveDrab;
+    		type = TYPE_TUILES.FORET;
     	}
     	
     	public override string ExporterXML()
@@ -83,6 +90,7 @@ namespace ProjetEditeur
     {
     	public Vide()
     	{
+    		type = TYPE_TUILES.EFFACER;
     		couleur = Colors.Black;
     	}
     	
@@ -107,6 +115,7 @@ namespace ProjetEditeur
     	public Bateau()
     	{
     		couleur = Colors.Wheat;
+    		type = TYPE_TUILES.BATEAU;
     	}
     	
     	public override string ExporterXML()
@@ -120,6 +129,7 @@ namespace ProjetEditeur
     	public Joyau()
     	{
     		couleur = Colors.Gold;
+    		type = TYPE_TUILES.JOYAU;
     	}
     	
     	public override string ExporterXML()
@@ -133,6 +143,7 @@ namespace ProjetEditeur
     	public Epee()
     	{
     		couleur = Colors.Gray;
+    		type = TYPE_TUILES.EPEE;
     	}
     	
     	public override string ExporterXML()

@@ -18,7 +18,7 @@ namespace ProjetEditeur
 	/// </summary>
 	public class Controlleur
 	{
-		enum TUILE{FORET, HERBE, PLAGE, MER, EFFACER};
+		public enum TUILE{FORET, HERBE, PLAGE, MER, EFFACER, EPEE, BATEAU, JOYAU};
 		enum ARTEFACT{EPEE, BATEAU, JOYAU};
 		
 		readonly VueEditeur vueEditeur = null;
@@ -31,6 +31,37 @@ namespace ProjetEditeur
 			this.vueEditeur = vue;
 			this.modeleEditeur = modele;
 			tuileActive = Tuiles.vide;
+		}
+		
+		public Tuile GetTuileActive() { return tuileActive; }
+		
+		public void notifierActionChangerTuile(TYPE_TUILES tuile) {
+			switch (tuile){
+				case TYPE_TUILES.FORET:
+					tuileActive = Tuiles.foret;
+					break;
+				case TYPE_TUILES.HERBE:
+					tuileActive = Tuiles.herbe;
+					break;
+				case TYPE_TUILES.PLAGE:
+					tuileActive = Tuiles.plage;
+					break;
+				case TYPE_TUILES.MER:
+					tuileActive = Tuiles.mer;
+					break;
+				case TYPE_TUILES.EFFACER:
+					tuileActive = Tuiles.vide;
+					break;
+				case TYPE_TUILES.BATEAU:
+					tuileActive = Tuiles.bateau;
+					break;	
+				case TYPE_TUILES.JOYAU:
+					tuileActive = Tuiles.joyau;
+					break;
+				case TYPE_TUILES.EPEE:
+					tuileActive = Tuiles.epee;
+					break;
+			}
 		}
 		
 		public void notifierActionDessinerForet()
