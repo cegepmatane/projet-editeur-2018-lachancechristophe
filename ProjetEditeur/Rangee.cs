@@ -16,12 +16,13 @@ namespace ProjetEditeur
 	/// </summary>
 	public class Rangee
 	{
-		private const int LARGEUR = 14;
+		private int LARGEUR;
 		private List<Tuile> listeTuiles;
 		
-		public Rangee()
+		public Rangee(int l)
 		{
 			listeTuiles = new List<Tuile>();
+			LARGEUR = l;
 			InitialiserRangee();
 		}
 		

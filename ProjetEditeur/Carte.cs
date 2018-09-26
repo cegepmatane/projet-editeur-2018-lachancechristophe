@@ -16,8 +16,8 @@ namespace ProjetEditeur
 	/// </summary>
 	public class Carte
 	{
-		private const int HAUTEUR = 8;
-		private const int LARGEUR = 14;
+		private const int HAUTEUR = 16;
+		private const int LARGEUR = 28;
 		
 		private List<Rangee> listeRangees = null;
 		
@@ -33,7 +33,7 @@ namespace ProjetEditeur
 		{
 			for(int i = 0; i < HAUTEUR; i++)
 			{
-				listeRangees.Add(new Rangee());
+				listeRangees.Add(new Rangee(LARGEUR));
 			}
 		}
 		
@@ -92,7 +92,7 @@ namespace ProjetEditeur
 					if(listeTuiles[x + (y * LARGEUR)] != null)
 						this.PlacerTuile(listeTuiles[x + (y * LARGEUR)], x, y);
 					else
-						this.PlacerTuile(Controlleur.Tuiles.vide, x, y);
+						this.PlacerTuile(Tuiles.vide, x, y);
 				}
 			}
 		}

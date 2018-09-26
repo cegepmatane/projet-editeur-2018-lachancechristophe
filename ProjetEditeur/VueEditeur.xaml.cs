@@ -26,9 +26,9 @@ namespace ProjetEditeur
 	/// </summary>
 	public partial class VueEditeur : Window
 	{
-		private const int HAUTEUR = 8;
-		private const int LARGEUR = 14;
-		const int LARGEUR_TUILE = 50;
+		private const int HAUTEUR = 16;
+		private const int LARGEUR = 28;
+		const int LARGEUR_TUILE = 25;
 		
 		private SolidColorBrush brosseActif, brosseInactif;
 		

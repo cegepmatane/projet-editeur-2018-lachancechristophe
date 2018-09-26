@@ -44,25 +44,25 @@ namespace ProjetEditeur
 		            switch (reader.Name)
 		            {
 		                case "foret":
-		            		tile = Controlleur.Tuiles.foret;
+		            		tile = Tuiles.foret;
 		                    break;
 		                case "plage":
-		                   	tile = Controlleur.Tuiles.plage;
+		                   	tile = Tuiles.plage;
 		                    break;
 		                case "mer":
-		                    tile = Controlleur.Tuiles.mer;
+		                    tile = Tuiles.mer;
 		                    break;
 		                case "herbe":
-		                    tile = Controlleur.Tuiles.herbe;
+		                    tile = Tuiles.herbe;
 		                    break;
 		                case "epee":
-		                    tile = Controlleur.Tuiles.epee;
+		                    tile = Tuiles.epee;
 		                    break;
 		                case "joyau":
-		                    tile = Controlleur.Tuiles.joyau;
+		                    tile = Tuiles.joyau;
 		                    break;
 		                case "bateau":
-		                    tile = Controlleur.Tuiles.bateau;
+		                    tile = Tuiles.bateau;
 		                    break;
 		                default:
 		                    Console.WriteLine("Other node {0} with value {1}",

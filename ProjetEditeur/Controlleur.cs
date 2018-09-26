@@ -127,16 +127,18 @@ namespace ProjetEditeur
 			if(null != commande) commande.executer();
 		}
 		
-		public static class Tuiles
-		{
-			public static Foret foret = new Foret();
-			public static Herbe herbe = new Herbe();
-			public static Plage plage = new Plage();
-			public static Mer mer = new Mer();
-			public static Epee epee = new Epee();
-			public static Joyau joyau = new Joyau();
-			public static Bateau bateau = new Bateau();
-			public static Vide vide = new Vide();
-		}
+		
+	}
+	
+	public static class Tuiles
+	{
+		public static Foret foret = new Foret();
+		public static Herbe herbe = new Herbe();
+		public static Plage plage = new Plage();
+		public static Mer mer = new Mer();
+		public static Epee epee = new Epee();
+		public static Joyau joyau = new Joyau();
+		public static Bateau bateau = new Bateau();
+		public static Vide vide = new Vide();
 	}
 }
