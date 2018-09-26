@@ -136,7 +136,8 @@
 			Width="75"
 			HorizontalAlignment="Left"
 			Margin="708,46,0,369"
-			Content="Annuler" />
+			Content="Annuler"
+			Click="boutonAnnuler_Click" />
 		<Button
 			x:Name="boutonRefaire"
 			Canvas.Top="6"
@@ -147,6 +148,7 @@
 			Width="75"
 			HorizontalAlignment="Right"
 			Margin="0,46,8,369"
-			Content="Refaire" />
+			Content="Refaire"
+			Click="boutonRefaire_Click" />
 	</Grid>
 </Window>

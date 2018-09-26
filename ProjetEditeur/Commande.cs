@@ -41,36 +41,38 @@ namespace ProjetEditeur
 		
 		public override void executer()
 		{
-			controlleurMaitre.notifierActionChangerTuile(tuile);
+			controlleurMaitre.notifierActionChangerTuile(tuile, true);
 		}
 		public override void annuler()
 		{
-			controlleurMaitre.notifierActionChangerTuile(tuileAvant);
+			controlleurMaitre.notifierActionChangerTuile(tuileAvant, false);
 		}
 	}
 	
 	public class CommandePlacerTuile : Commande
 	{
-		private TYPE_TUILES tuileAvant, tuile;
+		private TYPE_TUILES tuileAvant, type;
 		private int x, y;
 		readonly Controlleur controlleurMaitre;
 		
-		public CommandePlacerTuile(TYPE_TUILES tuileInput, int xInput, int yInput, Controlleur ctrl)
+		public CommandePlacerTuile(int xInput, int yInput, TYPE_TUILES typeInput ,Controlleur ctrl)
 		{
 			this.controlleurMaitre = ctrl;
-			//this.tuileAvant = TODO carte.GetTileTypeAtCoords
-			this.tuile = tuileInput;
+			this.tuileAvant = controlleurMaitre.GetTypeTuileAuPoint(xInput, yInput);
 			this.x = xInput;
 			this.y = yInput;
+			this.type = typeInput;
 		}
 		
 		public override void executer()
 		{
-			controlleurMaitre.notifierActionChangerTuile(tuile);
+			controlleurMaitre.notifierActionChangerTuile(type, false);
+			controlleurMaitre.notifierActionPlacerTuile(x, y, true);
 		}
 		public override void annuler()
 		{
-			controlleurMaitre.notifierActionChangerTuile(tuileAvant);
+			controlleurMaitre.notifierActionChangerTuile(tuileAvant, false);
+			controlleurMaitre.notifierActionPlacerTuile(x, y, false);
 		}
 	}
 }

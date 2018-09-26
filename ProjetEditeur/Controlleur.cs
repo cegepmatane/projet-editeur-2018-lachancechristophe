@@ -21,7 +21,9 @@ namespace ProjetEditeur
 		readonly VueEditeur vueEditeur = null;
 		readonly Carte modeleEditeur = null;
 		
+		private Historique historique = new Historique();
 		private Tuile tuileActive;
+		private TYPE_TUILES typeActif;
 		
 		public Controlleur(VueEditeur vue, Carte modele)
 		{
@@ -32,7 +34,16 @@ namespace ProjetEditeur
 		
 		public Tuile GetTuileActive() { return tuileActive; }
 		
-		public void notifierActionChangerTuile(TYPE_TUILES tuile) {
+		public TYPE_TUILES GetTypeTuileAuPoint(int x, int y)
+		{
+			return modeleEditeur.GetTypeTuileAuPoint(x, y);
+		}
+		
+		public void notifierActionChangerTuile(TYPE_TUILES tuile, bool enregistrer)
+		{
+			if (enregistrer) historique.memoriserAction(new CommandeChangerTuile(tuile, this));
+			
+			typeActif = tuile;
 			switch (tuile){
 				case TYPE_TUILES.FORET:
 					tuileActive = Tuiles.foret;
@@ -59,46 +70,7 @@ namespace ProjetEditeur
 					tuileActive = Tuiles.epee;
 					break;
 			}
-		}
-		
-		public void notifierActionDessinerForet()
-		{
-			tuileActive = Tuiles.foret;
-		}
-		
-		public void notifierActionDessinerHerbe()
-		{
-			tuileActive = Tuiles.herbe;
-		}
-		
-		public void notifierActionDessinerPlage()
-		{
-			tuileActive = Tuiles.plage;
-		}
-		
-		public void notifierActionDessinerMer()
-		{
-			tuileActive = Tuiles.mer;
-		}
-		
-		public void notifierActionEffacer()
-		{
-			tuileActive = Tuiles.vide;
-		}
-		
-		public void notifierActionDessinerEpee()
-		{
-			tuileActive = Tuiles.epee;
-		}
-		
-		public void notifierActionDessinerBateau()
-		{
-			tuileActive = Tuiles.bateau;
-		}
-		
-		public void notifierActionDessinerJoyau()
-		{
-			tuileActive = Tuiles.joyau;
+			vueEditeur.illuminerBouton(tuile);
 		}
 		
 		public void notifierActionSauvegarderXML()
@@ -134,10 +106,25 @@ namespace ProjetEditeur
 		   	}
 		}
 		
-		public void notifierActionClicDessin(int x, int y)
+		public void notifierActionPlacerTuile(int x, int y, bool enregistrer)
 		{
+			if (enregistrer) historique.memoriserAction(new CommandePlacerTuile(x, y, typeActif, this));
 			modeleEditeur.PlacerTuile(tuileActive, x, y);
 			vueEditeur.AfficherCarte();
+		}
+		
+		public void notifierActionRetour()
+		{
+			Console.WriteLine("notifierActionRetourner()");
+			Commande commande = historique.AbandonnerAction();
+			if(null != commande) commande.annuler();
+		}
+		
+		public void notifierActionRefaire()
+		{
+			Console.WriteLine("notifierActionRefaire()");
+			Commande commande = historique.RefaireAction();
+			if(null != commande) commande.executer();
 		}
 		
 		public static class Tuiles

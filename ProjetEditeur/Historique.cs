@@ -18,6 +18,8 @@ namespace ProjetEditeur
 	{
 	
 		protected Stack<Commande> dernieresActions = new Stack<Commande>();
+		protected Stack<Commande> actionsAnnulees = new Stack<Commande>();
+		
 		public Historique()
 		{
 		}
@@ -27,12 +29,26 @@ namespace ProjetEditeur
 			this.dernieresActions.Push(commande);
 		}
 		
-		public Commande abandonnerAction()
+		public Commande AbandonnerAction()
 		{
 			if(this.dernieresActions.Count > 0)
-				return this.dernieresActions.Pop();
+			{
+				Commande command = this.dernieresActions.Pop();
+				actionsAnnulees.Push( command );
+				return command;
+			}
 			return null;
 		}
 		
+		public Commande RefaireAction()
+		{
+			if(this.actionsAnnulees.Count > 0)
+			{
+				Commande command = this.actionsAnnulees.Pop();
+				dernieresActions.Push( command );
+				return command;
+			}
+			return null;
+		}
 	}
 }

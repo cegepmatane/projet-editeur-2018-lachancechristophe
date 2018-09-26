@@ -80,7 +80,7 @@ namespace ProjetEditeur
 		
 		public TYPE_TUILES GetTypeTuileAuPoint(int x, int y)
 		{
-			
+			return listeRangees[y].GetTypeTuile(x);
 		}
 		
 		public void ImporterXML(List<Tuile> listeTuiles)

@@ -97,56 +97,39 @@ namespace ProjetEditeur
     
 		    int nX = (int) p.X / (LARGEUR_TUILE-1);
 		    int nY = (int) p.Y / (LARGEUR_TUILE-1);
-		    controlleurEditeur.notifierActionClicDessin(nX, nY);
+		    controlleurEditeur.notifierActionPlacerTuile(nX, nY, true);
 		}
 		void boutonHerbe_Click(object sender, RoutedEventArgs e)
 		{
-			setBoutonsInactif();
-			boutonHerbe.Background = brosseActif;
-			//controlleurEditeur.notifierActionDessinerHerbe();
-			controlleurEditeur.notifierActionChangerTuile(TYPE_TUILES.HERBE);
+			controlleurEditeur.notifierActionChangerTuile(TYPE_TUILES.HERBE, true);
 		}
 		void boutonForet_Click(object sender, RoutedEventArgs e)
 		{
-			setBoutonsInactif();
-			boutonForet.Background = brosseActif;
-			controlleurEditeur.notifierActionChangerTuile(TYPE_TUILES.FORET);
+			controlleurEditeur.notifierActionChangerTuile(TYPE_TUILES.FORET, true);
 		}
 		void boutonPlage_Click(object sender, RoutedEventArgs e)
 		{
-			setBoutonsInactif();
-			boutonPlage.Background = brosseActif;
-			controlleurEditeur.notifierActionChangerTuile(TYPE_TUILES.PLAGE);
+			controlleurEditeur.notifierActionChangerTuile(TYPE_TUILES.PLAGE, true);
 		}
 		void boutonMer_Click(object sender, RoutedEventArgs e)
 		{
-			setBoutonsInactif();
-			boutonMer.Background = brosseActif;
-			controlleurEditeur.notifierActionChangerTuile(TYPE_TUILES.MER);
+			controlleurEditeur.notifierActionChangerTuile(TYPE_TUILES.MER, true);
 		}
 		void boutonJoyau_Click(object sender, RoutedEventArgs e)
 		{
-			setBoutonsInactif();
-			boutonJoyau.Background = brosseActif;
-			controlleurEditeur.notifierActionChangerTuile(TYPE_TUILES.JOYAU);
+			controlleurEditeur.notifierActionChangerTuile(TYPE_TUILES.JOYAU, true);
 		}
 		void boutonBateau_Click(object sender, RoutedEventArgs e)
 		{
-			setBoutonsInactif();
-			boutonBateau.Background = brosseActif;
-			controlleurEditeur.notifierActionChangerTuile(TYPE_TUILES.BATEAU);
+			controlleurEditeur.notifierActionChangerTuile(TYPE_TUILES.BATEAU, true);
 		}
 		void boutonEpee_Click(object sender, RoutedEventArgs e)
 		{
-			setBoutonsInactif();
-			boutonEpee.Background = brosseActif;
-			controlleurEditeur.notifierActionChangerTuile(TYPE_TUILES.EPEE);
+			controlleurEditeur.notifierActionChangerTuile(TYPE_TUILES.EPEE, true);
 		}
 		void boutonEffacer_Click(object sender, RoutedEventArgs e)
 		{
-			setBoutonsInactif();
-			boutonEffacer.Background = brosseActif;
-			controlleurEditeur.notifierActionChangerTuile(TYPE_TUILES.EFFACER);
+			controlleurEditeur.notifierActionChangerTuile(TYPE_TUILES.EFFACER, true);
 		}
 		void boutonSauver_Click(object sender, RoutedEventArgs e)
 		{
@@ -155,6 +138,44 @@ namespace ProjetEditeur
 		void boutonCharger_Click(object sender, RoutedEventArgs e)
 		{
 			controlleurEditeur.notifierActionChargerXML();
+		}
+		void boutonAnnuler_Click(object sender, RoutedEventArgs e)
+		{
+			controlleurEditeur.notifierActionRetour();
+		}
+		public void illuminerBouton(TYPE_TUILES type)
+		{
+			setBoutonsInactif();
+			switch (type){
+					case TYPE_TUILES.FORET:
+					boutonForet.Background = brosseActif;
+					break;
+				case TYPE_TUILES.HERBE:
+					boutonHerbe.Background = brosseActif;
+					break;
+				case TYPE_TUILES.PLAGE:
+					boutonPlage.Background = brosseActif;
+					break;
+				case TYPE_TUILES.MER:
+					boutonMer.Background = brosseActif;
+					break;
+				case TYPE_TUILES.EFFACER:
+					boutonEffacer.Background = brosseActif;
+					break;
+				case TYPE_TUILES.BATEAU:
+					boutonBateau.Background = brosseActif;
+					break;	
+				case TYPE_TUILES.JOYAU:
+					boutonJoyau.Background = brosseActif;
+					break;
+				case TYPE_TUILES.EPEE:
+					boutonEpee.Background = brosseActif;
+					break; 
+			}
+		}
+		void boutonRefaire_Click(object sender, RoutedEventArgs e)
+		{
+			controlleurEditeur.notifierActionRefaire();
 		}
 	
 	}
