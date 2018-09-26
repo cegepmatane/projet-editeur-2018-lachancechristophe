@@ -18,9 +18,6 @@ namespace ProjetEditeur
 	/// </summary>
 	public class Controlleur
 	{
-		public enum TUILE{FORET, HERBE, PLAGE, MER, EFFACER, EPEE, BATEAU, JOYAU};
-		enum ARTEFACT{EPEE, BATEAU, JOYAU};
-		
 		readonly VueEditeur vueEditeur = null;
 		readonly Carte modeleEditeur = null;
 		

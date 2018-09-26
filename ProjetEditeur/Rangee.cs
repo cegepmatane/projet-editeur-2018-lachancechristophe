@@ -33,6 +33,11 @@ namespace ProjetEditeur
 			}
 		}
 		
+		public TYPE_TUILES GetTypeTuile(int x)
+		{
+			return listeTuiles[x].GetTypeTuile();
+		}
+		
 		public List<Tuile> GetListeTuile() { return listeTuiles; }
 		
 		public void PlacerTuile(Tuile tuilePlacee, int n){

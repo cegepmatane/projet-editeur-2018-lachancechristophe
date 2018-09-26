@@ -49,5 +49,28 @@ namespace ProjetEditeur
 		}
 	}
 	
-	
+	public class CommandePlacerTuile : Commande
+	{
+		private TYPE_TUILES tuileAvant, tuile;
+		private int x, y;
+		readonly Controlleur controlleurMaitre;
+		
+		public CommandePlacerTuile(TYPE_TUILES tuileInput, int xInput, int yInput, Controlleur ctrl)
+		{
+			this.controlleurMaitre = ctrl;
+			//this.tuileAvant = TODO carte.GetTileTypeAtCoords
+			this.tuile = tuileInput;
+			this.x = xInput;
+			this.y = yInput;
+		}
+		
+		public override void executer()
+		{
+			controlleurMaitre.notifierActionChangerTuile(tuile);
+		}
+		public override void annuler()
+		{
+			controlleurMaitre.notifierActionChangerTuile(tuileAvant);
+		}
+	}
 }

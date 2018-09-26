@@ -78,6 +78,11 @@ namespace ProjetEditeur
 			}
 		}
 		
+		public TYPE_TUILES GetTypeTuileAuPoint(int x, int y)
+		{
+			
+		}
+		
 		public void ImporterXML(List<Tuile> listeTuiles)
 		{
 			for(int x = 0; x < LARGEUR ; x++ ) 
