@@ -71,6 +71,7 @@
     <Compile Include="Carte.cs" />
     <Compile Include="Commande.cs" />
     <Compile Include="Controlleur.cs" />
+    <Compile Include="EditeurDAO.cs" />
     <Compile Include="Historique.cs" />
     <Compile Include="Parseur.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

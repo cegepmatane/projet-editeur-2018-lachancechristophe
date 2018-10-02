@@ -20,8 +20,9 @@ namespace ProjetEditeur
 	{
 		readonly VueEditeur vueEditeur = null;
 		readonly Carte modeleEditeur = null;
+		readonly Historique historique = new Historique();
+		readonly EditeurDAO localDAO = null;
 		
-		private Historique historique = new Historique();
 		private Tuile tuileActive;
 		private TYPE_TUILES typeActif;
 		
@@ -30,6 +31,7 @@ namespace ProjetEditeur
 			this.vueEditeur = vue;
 			this.modeleEditeur = modele;
 			tuileActive = Tuiles.vide;
+			localDAO = new EditeurDAO(this);
 		}
 		
 		public Tuile GetTuileActive() { return tuileActive; }
@@ -75,35 +77,39 @@ namespace ProjetEditeur
 		
 		public void notifierActionSauvegarderXML()
 		{		
-			SaveFileDialog dialogueSauvegarde = new SaveFileDialog();  
-		   	dialogueSauvegarde.Filter = "Carte|*.xml";  
-		   	dialogueSauvegarde.Title = "Sauvegarder la carte en format XML";  
-		   	dialogueSauvegarde.ShowDialog();  
-		
-		   	// If the file name is not an empty string open it for saving.  
-		   	if(dialogueSauvegarde.FileName != "")  
-		   	{
-		   		File.WriteAllText(dialogueSauvegarde.FileName, modeleEditeur.ExporterXML());
-		   	}
+//			SaveFileDialog dialogueSauvegarde = new SaveFileDialog();  
+//		   	dialogueSauvegarde.Filter = "Carte|*.xml";  
+//		   	dialogueSauvegarde.Title = "Sauvegarder la carte en format XML";  
+//		   	dialogueSauvegarde.ShowDialog();  
+//		
+//		   	// If the file name is not an empty string open it for saving.  
+//		   	if(dialogueSauvegarde.FileName != "")  
+//		   	{
+//		   		File.WriteAllText(dialogueSauvegarde.FileName, modeleEditeur.ExporterXML());
+//		   	}
+			
+			localDAO.SauvegarderXML(modeleEditeur.ExporterXML());
 		}
 		
 		public void notifierActionChargerXML()
 		{
-			OpenFileDialog dialogueCharger = new OpenFileDialog();
-			dialogueCharger.Filter = "Carte|*.xml";
-			dialogueCharger.Title = "Charger la carte en format XML";  
-			dialogueCharger.ShowDialog();
-			
-			if(dialogueCharger.FileName != "")  
-		   	{
-				Parser ps = Parser.getInstance();
-				modeleEditeur.ImporterXML(
-					ps.parserListeTuileXML(
-						File.ReadAllText(
-							dialogueCharger.FileName)));
-				
-				vueEditeur.AfficherCarte();
-		   	}
+//			OpenFileDialog dialogueCharger = new OpenFileDialog();
+//			dialogueCharger.Filter = "Carte|*.xml";
+//			dialogueCharger.Title = "Charger la carte en format XML";  
+//			dialogueCharger.ShowDialog();
+//			
+//			if(dialogueCharger.FileName != "")  
+//		   	{
+//				Parser ps = Parser.getInstance();
+//				modeleEditeur.ImporterXML(
+//					ps.parserListeTuileXML(
+//						File.ReadAllText(
+//							dialogueCharger.FileName)));
+//				
+//				vueEditeur.AfficherCarte();
+//		   	}
+			modeleEditeur.ImporterXML(localDAO.ChargerXML());
+			vueEditeur.AfficherCarte();
 		}
 		
 		public void notifierActionPlacerTuile(int x, int y, bool enregistrer)
