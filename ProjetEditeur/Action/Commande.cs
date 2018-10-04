@@ -64,10 +64,10 @@ namespace ProjetEditeur
 			switch(nInput)
 			{
 				case 0:
-					this.tuile = this.controlleurMaitre.reservePrototypes.creerSeaDoo();
+					this.tuile = this.controlleurMaitre.reservePrototypes.creerTuileCustom();
 					break;
 				case 1:
-					this.tuile = this.controlleurMaitre.reservePrototypes.creerStadeOlympique();
+					this.tuile = this.controlleurMaitre.reservePrototypes.creerArtefactCustom();
 					break;
 			}
 			this.n = nInput;

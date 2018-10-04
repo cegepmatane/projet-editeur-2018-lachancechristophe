@@ -18,15 +18,16 @@
 		<Button
 			Canvas.Top="85"
 			Canvas.Left="711"
-			Content="Proto 1"
 			RenderTransformOrigin="0.5,0.5"
 			x:Name="boutonPrototype1"
 			Click="boutonPrototype1_Click"
 			Grid.Column="0"
 			Grid.Row="0"
-			HorizontalAlignment="Stretch"
 			VerticalAlignment="Stretch"
-			Margin="437,413,327,8" />
+			Content="Tuile perso."
+			Width="110"
+			HorizontalAlignment="Left"
+			Margin="437,413,0,8" />
 		<Button
 			Canvas.Top="72"
 			Canvas.Left="735"
@@ -165,7 +166,6 @@
 		<Button
 			Canvas.Top="85"
 			Canvas.Left="711"
-			Content="Proto 2"
 			x:Name="boutonPrototype2"
 			Click="boutonPrototype2_Click"
 			Width="109"
@@ -173,6 +173,7 @@
 			Grid.Row="0"
 			HorizontalAlignment="Right"
 			VerticalAlignment="Stretch"
-			Margin="0,413,188,8" />
+			Margin="0,413,188,8"
+			Content="Artefact perso." />
 	</Grid>
 </Window>

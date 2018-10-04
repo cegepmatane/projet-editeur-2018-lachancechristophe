@@ -95,7 +95,7 @@ namespace ProjetEditeur
 			if (enregistrer) historique.memoriserAction(new CommandePlacerTuile(x, y, typeActif, this));
 			
 			TYPE_TUILES tt = tuileActive.GetTypeTuile();
-			if((tt == TYPE_TUILES.JOYAU) || (tt == TYPE_TUILES.BATEAU) || (tt == TYPE_TUILES.EPEE))
+			if((tt == TYPE_TUILES.JOYAU) || (tt == TYPE_TUILES.BATEAU) || (tt == TYPE_TUILES.EPEE)  || (tt == TYPE_TUILES.CUSTOMARTEFACT))
 				//Si c'est un artefact
 			{
 				modeleEditeur.placerArtefact(tuileActive, x, y);
@@ -123,10 +123,10 @@ namespace ProjetEditeur
 			switch(n)
 			{
 				case 0:
-					tuileActive = reservePrototypes.creerSeaDoo();
+					tuileActive = reservePrototypes.creerTuileCustom();
 					break;
 				case 1:
-					tuileActive = reservePrototypes.creerStadeOlympique();
+					tuileActive = reservePrototypes.creerArtefactCustom();
 					break;
 			}
 		}

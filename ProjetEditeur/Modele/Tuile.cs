@@ -14,7 +14,7 @@ namespace ProjetEditeur
 	/// <summary>
 	/// Description of Tuiles.
 	/// </summary>
-	public enum TYPE_TUILES {FORET, HERBE, PLAGE, MER, EFFACER, EPEE, BATEAU, JOYAU, CUSTOM};
+	public enum TYPE_TUILES {FORET, HERBE, PLAGE, MER, EFFACER, EPEE, BATEAU, JOYAU, CUSTOMTILE, CUSTOMARTEFACT};
 	
 	abstract public class Tuile
     {
@@ -90,11 +90,11 @@ namespace ProjetEditeur
     {
     	readonly string typeStr;
     	
-    	public Custom(Color couleurInput, string typeString)
+    	public Custom(Color couleurInput, TYPE_TUILES typeEnu)
     	{
     		couleur = couleurInput;
-    		type = TYPE_TUILES.CUSTOM;
-    		typeStr = typeString;
+    		type = typeEnu;
+    		typeStr = (typeEnu == TYPE_TUILES.CUSTOMARTEFACT)?"CustomArtefact":"CustomTuile";
     	}
     	
     	public override string exporterXML()

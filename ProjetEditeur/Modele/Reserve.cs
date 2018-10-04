@@ -7,6 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.Windows.Media;
 
 namespace ProjetEditeur
 {
@@ -15,14 +16,17 @@ namespace ProjetEditeur
 	/// </summary>
 	public class Reserve
 	{
-		private Custom custom1, custom2;
+		private Custom customTuile, customArtefact;
 		public Reserve()
 		{
-			custom1 = new Custom(System.Windows.Media.Colors.Aquamarine, "SeaDoo");
-			custom2 = new Custom(System.Windows.Media.Colors.BlueViolet, "StadeOlympique");
+			customTuile = new Custom(Colors.Aquamarine, TYPE_TUILES.CUSTOMTILE);
+			customArtefact = new Custom(Colors.BlueViolet, TYPE_TUILES.CUSTOMARTEFACT);
 		}
 		
-		public Custom creerSeaDoo(){ return custom1.Cloner(); }
-		public Custom creerStadeOlympique(){ return custom2.Cloner(); }
+		public void setTuileCustom(Color couleur) { customTuile = new Custom(couleur, TYPE_TUILES.CUSTOMTILE); }
+		public void setArtefactCustom(Color couleur) { customArtefact = new Custom(couleur, TYPE_TUILES.CUSTOMARTEFACT); }
+		
+		public Custom creerTuileCustom(){ return customTuile.Cloner(); }
+		public Custom creerArtefactCustom(){ return customArtefact.Cloner(); }
 	}
 }

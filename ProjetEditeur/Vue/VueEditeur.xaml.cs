@@ -8,6 +8,7 @@
  */
 using System;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -199,10 +200,22 @@ namespace ProjetEditeur
 		}
 		void boutonPrototype1_Click(object sender, RoutedEventArgs e)
 		{
+			ColorDialog DialogueCouleur = new ColorDialog();
+			DialogueCouleur.AllowFullOpen = true;
+			if(DialogueCouleur.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+			{
+				controlleurEditeur.reservePrototypes.setTuileCustom( Color.FromRgb(DialogueCouleur.Color.R, DialogueCouleur.Color.G, DialogueCouleur.Color.B));
+			}
 			controlleurEditeur.notifierActionClonerTuile(0, true);
 		}
 		void boutonPrototype2_Click(object sender, RoutedEventArgs e)
 		{
+			ColorDialog DialogueCouleur = new ColorDialog();
+			DialogueCouleur.AllowFullOpen = true;
+			if(DialogueCouleur.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+			{
+				controlleurEditeur.reservePrototypes.setArtefactCustom(Color.FromRgb(DialogueCouleur.Color.R, DialogueCouleur.Color.G, DialogueCouleur.Color.B));
+			}
 			controlleurEditeur.notifierActionClonerTuile(1, true);
 		}
 	}
