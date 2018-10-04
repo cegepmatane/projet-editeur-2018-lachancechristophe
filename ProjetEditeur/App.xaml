@@ -1,7 +1,7 @@
 ﻿<Application x:Class="ProjetEditeur.App"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	StartupUri="VueEditeur.xaml">
+	StartupUri="Vue/VueEditeur.xaml">
 	<Application.Resources>
 		 
 	</Application.Resources>

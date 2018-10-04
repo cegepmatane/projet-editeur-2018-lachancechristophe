@@ -71,7 +71,7 @@ namespace ProjetEditeur
 					brosse.Color = tuile.GetCouleur();
 					carre.Fill = brosse;
 					carre.Margin = new Thickness(x, y, 0, 0);
-					TYPE_TUILES tt = tuile.GetTypeTuile();
+//					TYPE_TUILES tt = tuile.GetTypeTuile();
 //					if((tt == TYPE_TUILES.JOYAU) || (tt == TYPE_TUILES.BATEAU) || (tt == TYPE_TUILES.EPEE))
 //						carre.Width = carre.Height = LARGEUR_TUILE/2;
 //					else
@@ -84,7 +84,30 @@ namespace ProjetEditeur
 				x = 0; 
 				y += LARGEUR_TUILE -1; // -1 pour eviter les espaces entres les tuiles lors du rendu
 			}
+			
+			x = y = 0;
+			foreach(Rangee rangee in carteAffichee.getListeRangeesArtefact())
+			{
+				foreach(Tuile tuile in rangee.getListeTuile())
+				{
+					if(tuile.GetTypeTuile() != TYPE_TUILES.EFFACER) {
+						SolidColorBrush brosse = new SolidColorBrush();
+						Rectangle carre = new Rectangle();
+						brosse.Color = tuile.GetCouleur();
+						carre.Fill = brosse;
+						carre.Margin = new Thickness(x + 2, y + 2, 0, 0);
+						carre.Width = carre.Height = LARGEUR_TUILE / 2 ;
+	
+						canvasCarte.Children.Add(carre);
+					}
+					x += LARGEUR_TUILE -1; // -1 pour eviter les espaces entres les tuiles lors du rendu
+				}
+				
+				x = 0; 
+				y += LARGEUR_TUILE -1; // -1 pour e
+			}
 		}
+			
 		
 		void canvasCarte_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{

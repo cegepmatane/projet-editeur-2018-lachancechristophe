@@ -20,10 +20,12 @@ namespace ProjetEditeur
 		private const int LARGEUR = 28;
 		
 		private List<Rangee> listeRangees = null;
+		private List<Rangee> listeRangeesArtefact = null;
 		
 		public Carte(bool hasard)
 		{
 			listeRangees = new List<Rangee>();
+			listeRangeesArtefact = new List<Rangee>();
 			initialiserCarte();
 			if(hasard)
 				creerCarteHasard();
@@ -34,6 +36,7 @@ namespace ProjetEditeur
 			for(int i = 0; i < HAUTEUR; i++)
 			{
 				listeRangees.Add(new Rangee(LARGEUR));
+				listeRangeesArtefact.Add(new Rangee(LARGEUR));
 			}
 		}
 		
@@ -41,9 +44,18 @@ namespace ProjetEditeur
 			listeRangees[y].placerTuile(tuileAjoutee, x);
 		}
 		
+		public void placerArtefact(Tuile tuileAjoutee, int x, int y){
+			listeRangeesArtefact[y].placerTuile(tuileAjoutee, x);
+		}
+		
 		public List<Rangee> getListeRangees()
 		{
 			return listeRangees;
+		}
+		
+		public List<Rangee> getListeRangeesArtefact()
+		{
+			return listeRangeesArtefact;
 		}
 		
 		private void creerCarteHasard()
@@ -83,6 +95,11 @@ namespace ProjetEditeur
 			return listeRangees[y].getTypeTuile(x);
 		}
 		
+		public TYPE_TUILES getTypeArtefactAuPoint(int x, int y)
+		{
+			return listeRangeesArtefact[y].getTypeTuile(x);
+		}
+		
 		public void importerXML(List<Tuile> listeTuiles)
 		{
 			for(int x = 0; x < LARGEUR ; x++ ) 
@@ -99,12 +116,17 @@ namespace ProjetEditeur
 		
 		public string exporterXML()
 		{
-			string chaineXML = "<carte>";
+			string chaineXML = "<carte><tuiles>";
 			
 			foreach(Rangee rangee in listeRangees)
 				chaineXML += rangee.exporterXML();
 			
-			return chaineXML + "</carte>";
+			chaineXML += "</tuiles><artefacts>";
+			
+			foreach(Rangee rangee in listeRangeesArtefact)
+				chaineXML += rangee.exporterXML();
+			
+			return chaineXML + "</tuiles></carte>";
 		}
 
 	}

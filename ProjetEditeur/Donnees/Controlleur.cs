@@ -93,7 +93,26 @@ namespace ProjetEditeur
 		public void notifierActionPlacerTuile(int x, int y, bool enregistrer)
 		{
 			if (enregistrer) historique.memoriserAction(new CommandePlacerTuile(x, y, typeActif, this));
-			modeleEditeur.placerTuile(tuileActive, x, y);
+			
+			TYPE_TUILES tt = tuileActive.GetTypeTuile();
+			if((tt == TYPE_TUILES.JOYAU) || (tt == TYPE_TUILES.BATEAU) || (tt == TYPE_TUILES.EPEE))
+				//Si c'est un artefact
+			{
+				modeleEditeur.placerArtefact(tuileActive, x, y);
+			} 
+			else 
+				if(tt == TYPE_TUILES.EFFACER){
+				//Sinon si c'est pour effacer
+					if(modeleEditeur.getTypeArtefactAuPoint(x, y) != TYPE_TUILES.EFFACER)
+					//Si un artefact est present, effacer celui-ci
+						modeleEditeur.placerArtefact(tuileActive, x, y);
+					else
+					//Sinon effacer la tuile
+						modeleEditeur.placerTuile(tuileActive, x, y);
+			} else {
+				modeleEditeur.placerTuile(tuileActive, x, y);
+			}
+			
 			vueEditeur.afficherCarte(modeleEditeur);
 		}
 		
