@@ -35,13 +35,47 @@ namespace ProjetEditeur
 		public CommandeChangerTuile(TYPE_TUILES tuileInput, Controlleur ctrl)
 		{
 			this.controlleurMaitre = ctrl;
-			this.tuileAvant = controlleurMaitre.GetTuileActive().GetTypeTuile();
+			this.tuileAvant = controlleurMaitre.getTuileActive().GetTypeTuile();
 			this.tuile = tuileInput;
 		}
 		
 		public override void executer()
 		{
 			controlleurMaitre.notifierActionChangerTuile(tuile, true);
+		}
+		public override void annuler()
+		{
+			controlleurMaitre.notifierActionChangerTuile(tuileAvant, false);
+		}
+	}
+	
+	public class CommandeClonerTuile : Commande
+	{
+		private TYPE_TUILES tuileAvant;
+		private int n;
+		readonly Tuile tuile;
+		readonly Controlleur controlleurMaitre;
+		
+		public CommandeClonerTuile(int nInput, Controlleur ctrl)
+		{
+			this.controlleurMaitre = ctrl;
+			this.tuileAvant  =  controlleurMaitre.getTuileActive().GetTypeTuile();
+			
+			switch(nInput)
+			{
+				case 0:
+					this.tuile = this.controlleurMaitre.reservePrototypes.creerSeaDoo();
+					break;
+				case 1:
+					this.tuile = this.controlleurMaitre.reservePrototypes.creerStadeOlympique();
+					break;
+			}
+			this.n = nInput;
+		}
+		
+		public override void executer()
+		{
+			controlleurMaitre.notifierActionClonerTuile(n, true);
 		}
 		public override void annuler()
 		{
@@ -58,7 +92,7 @@ namespace ProjetEditeur
 		public CommandePlacerTuile(int xInput, int yInput, TYPE_TUILES typeInput ,Controlleur ctrl)
 		{
 			this.controlleurMaitre = ctrl;
-			this.tuileAvant = controlleurMaitre.GetTypeTuileAuPoint(xInput, yInput);
+			this.tuileAvant = controlleurMaitre.getTypeTuileAuPoint(xInput, yInput);
 			this.x = xInput;
 			this.y = yInput;
 			this.type = typeInput;

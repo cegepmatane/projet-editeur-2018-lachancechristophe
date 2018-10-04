@@ -29,7 +29,7 @@ namespace ProjetEditeur
 			this.dernieresActions.Push(commande);
 		}
 		
-		public Commande AbandonnerAction()
+		public Commande abandonnerAction()
 		{
 			if(this.dernieresActions.Count > 0)
 			{
@@ -40,7 +40,7 @@ namespace ProjetEditeur
 			return null;
 		}
 		
-		public Commande RefaireAction()
+		public Commande refaireAction()
 		{
 			if(this.actionsAnnulees.Count > 0)
 			{

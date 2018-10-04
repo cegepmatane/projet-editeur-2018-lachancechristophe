@@ -64,30 +64,37 @@
     <ApplicationDefinition Include="App.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Action\Commande.cs" />
+    <Compile Include="Action\Historique.cs" />
     <Compile Include="App.xaml.cs">
       <SubType>Code</SubType>
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Carte.cs" />
-    <Compile Include="Commande.cs" />
-    <Compile Include="Controlleur.cs" />
-    <Compile Include="EditeurDAO.cs" />
-    <Compile Include="Historique.cs" />
-    <Compile Include="Parseur.cs" />
+    <Compile Include="Donnees\Controlleur.cs" />
+    <Compile Include="Donnees\EditeurDAO.cs" />
+    <Compile Include="Donnees\Parseur.cs" />
+    <Compile Include="Modele\Carte.cs" />
+    <Compile Include="Modele\Rangee.cs" />
+    <Compile Include="Modele\Reserve.cs" />
+    <Compile Include="Modele\Tuile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\WPFAssemblyInfo.cs" />
-    <Compile Include="Rangee.cs" />
-    <Compile Include="VueEditeur.xaml.cs">
+    <Compile Include="Vue\VueEditeur.xaml.cs">
       <SubType>Code</SubType>
       <DependentUpon>VueEditeur.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Tuile.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="VueEditeur.xaml" />
+    <Page Include="Vue\VueEditeur.xaml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Modele" />
+    <Folder Include="Action" />
+    <Folder Include="Donnees" />
+    <Folder Include="Vue" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

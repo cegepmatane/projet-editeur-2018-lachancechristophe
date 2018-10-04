@@ -7,17 +7,10 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
-using System.Collections.Generic;
-using System.Security.Cryptography;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
-using System.IO;
 
 namespace ProjetEditeur
 {
@@ -39,11 +32,11 @@ namespace ProjetEditeur
 		{
 			InitializeComponent();
 			
-			modeleEditeur = new Carte(false);
+			controlleurEditeur = new Controlleur(this);
 			
-			controlleurEditeur = new Controlleur(this, modeleEditeur);
+			modeleEditeur = controlleurEditeur.getCarte();
 			
-			AfficherCarte();
+			afficherCarte(modeleEditeur);
 			
 			brosseActif = new SolidColorBrush();
 			brosseInactif = (SolidColorBrush) boutonHerbe.Background;
@@ -62,23 +55,26 @@ namespace ProjetEditeur
 			boutonEffacer.Background = brosseInactif;
 		}
 		
-		public void AfficherCarte()
+		public void afficherCarte(Carte carteAffichee)
 		{
 			canvasCarte.Children.Clear();
 			
 			int x, y;
 			x = y = 0;
 
-			
-			foreach(Rangee rangee in modeleEditeur.GetListeRangees())
+			foreach(Rangee rangee in carteAffichee.getListeRangees())
 			{
-				foreach(Tuile tuile in rangee.GetListeTuile())
+				foreach(Tuile tuile in rangee.getListeTuile())
 				{
 					SolidColorBrush brosse = new SolidColorBrush();
 					Rectangle carre = new Rectangle();
 					brosse.Color = tuile.GetCouleur();
 					carre.Fill = brosse;
 					carre.Margin = new Thickness(x, y, 0, 0);
+					TYPE_TUILES tt = tuile.GetTypeTuile();
+//					if((tt == TYPE_TUILES.JOYAU) || (tt == TYPE_TUILES.BATEAU) || (tt == TYPE_TUILES.EPEE))
+//						carre.Width = carre.Height = LARGEUR_TUILE/2;
+//					else
 					carre.Width = carre.Height = LARGEUR_TUILE;
 
 					canvasCarte.Children.Add(carre);
@@ -143,6 +139,7 @@ namespace ProjetEditeur
 		{
 			controlleurEditeur.notifierActionRetour();
 		}
+		
 		public void illuminerBouton(TYPE_TUILES type)
 		{
 			setBoutonsInactif();
@@ -177,22 +174,13 @@ namespace ProjetEditeur
 		{
 			controlleurEditeur.notifierActionRefaire();
 		}
-	
+		void boutonPrototype1_Click(object sender, RoutedEventArgs e)
+		{
+			controlleurEditeur.notifierActionClonerTuile(0, true);
+		}
+		void boutonPrototype2_Click(object sender, RoutedEventArgs e)
+		{
+			controlleurEditeur.notifierActionClonerTuile(1, true);
+		}
 	}
 }
-
-			
-			/*
-			string export = carteAleatoire.ExporterXML();
-			Console.Write(export);
-			
-			File.WriteAllText("export.xml", export);
-			
-			
-			Parser p = new Parser();
-			
-			string importXML = File.ReadAllText("export.xml");
-			
-			Carte carteImportee = p.parserListeTuileXML(importXML);
-			AfficherCarte(carteImportee);
-			*/

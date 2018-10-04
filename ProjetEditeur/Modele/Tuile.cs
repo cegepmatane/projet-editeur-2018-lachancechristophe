@@ -14,14 +14,14 @@ namespace ProjetEditeur
 	/// <summary>
 	/// Description of Tuiles.
 	/// </summary>
-	public enum TYPE_TUILES {FORET, HERBE, PLAGE, MER, EFFACER, EPEE, BATEAU, JOYAU};
+	public enum TYPE_TUILES {FORET, HERBE, PLAGE, MER, EFFACER, EPEE, BATEAU, JOYAU, CUSTOM};
 	
 	abstract public class Tuile
     {
 		protected TYPE_TUILES type;
 		protected Color couleur;
 		
-    	public virtual string ExporterXML()
+    	public virtual string exporterXML()
 	    {
 	        return "<tuile>Tuile invalide</tuile>\n";
 	    }
@@ -38,7 +38,7 @@ namespace ProjetEditeur
     		type = TYPE_TUILES.PLAGE;
     	}
     	
-    	public override string ExporterXML()
+    	public override string exporterXML()
 	    {
     		return "<plage/>";
     	}
@@ -52,7 +52,7 @@ namespace ProjetEditeur
     		type = TYPE_TUILES.MER;
     	}
     	
-    	public override string ExporterXML()
+    	public override string exporterXML()
 	    {
     		return "<mer/>";
     	}
@@ -66,7 +66,7 @@ namespace ProjetEditeur
     		type = TYPE_TUILES.HERBE;
     	}
     	
-    	public override string ExporterXML()
+    	public override string exporterXML()
 	    {
     		return "<herbe/>";
     	}
@@ -80,10 +80,29 @@ namespace ProjetEditeur
     		type = TYPE_TUILES.FORET;
     	}
     	
-    	public override string ExporterXML()
+    	public override string exporterXML()
 	    {
     		return "<foret/>";
     	}
+    }
+    
+    public class Custom : Tuile
+    {
+    	readonly string typeStr;
+    	
+    	public Custom(Color couleurInput, string typeString)
+    	{
+    		couleur = couleurInput;
+    		type = TYPE_TUILES.CUSTOM;
+    		typeStr = typeString;
+    	}
+    	
+    	public override string exporterXML()
+	    {
+    		return "<" + typeStr + "/>";
+    	}
+    	
+    	public Custom Cloner() { return (Custom)this.MemberwiseClone(); }
     }
     
     public class Vide : Tuile
@@ -94,7 +113,7 @@ namespace ProjetEditeur
     		couleur = Colors.Black;
     	}
     	
-    	public override string ExporterXML()
+    	public override string exporterXML()
 	    {
     		return "<vide/>";
     	}
@@ -104,7 +123,7 @@ namespace ProjetEditeur
     {
     	public Artefact(){}
     	
-    	public override string ExporterXML()
+    	public override string exporterXML()
 	    {
     		return "<artefact>Artefact invalide</artefact>";
     	}
@@ -118,7 +137,7 @@ namespace ProjetEditeur
     		type = TYPE_TUILES.BATEAU;
     	}
     	
-    	public override string ExporterXML()
+    	public override string exporterXML()
 	    {
     		return "<bateau/>";
     	}
@@ -132,7 +151,7 @@ namespace ProjetEditeur
     		type = TYPE_TUILES.JOYAU;
     	}
     	
-    	public override string ExporterXML()
+    	public override string exporterXML()
 	    {
     		return "<joyau/>";
     	}
@@ -146,7 +165,7 @@ namespace ProjetEditeur
     		type = TYPE_TUILES.EPEE;
     	}
     	
-    	public override string ExporterXML()
+    	public override string exporterXML()
 	    {
     		return "<epee/>";
     	}

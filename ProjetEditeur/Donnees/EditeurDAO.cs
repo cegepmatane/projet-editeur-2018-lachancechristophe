@@ -24,7 +24,7 @@ namespace ProjetEditeur
 			ctrl = ctrlInput;
 		}
 		
-		public void SauvegarderXML(String exportXML){
+		public void sauvegarderXML(String exportXML){
 			SaveFileDialog dialogueSauvegarde = new SaveFileDialog();  
 		   	dialogueSauvegarde.Filter = "Carte|*.xml";  
 		   	dialogueSauvegarde.Title = "Sauvegarder la carte en format XML";  
@@ -37,7 +37,7 @@ namespace ProjetEditeur
 		   	}
 		}
 		
-		public List<Tuile> ChargerXML()
+		public List<Tuile> chargerXML()
 		{
 		
 			OpenFileDialog dialogueCharger = new OpenFileDialog();

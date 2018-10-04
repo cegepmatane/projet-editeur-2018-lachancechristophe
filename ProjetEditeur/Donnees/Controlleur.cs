@@ -26,19 +26,23 @@ namespace ProjetEditeur
 		private Tuile tuileActive;
 		private TYPE_TUILES typeActif;
 		
-		public Controlleur(VueEditeur vue, Carte modele)
+		public Reserve reservePrototypes = new Reserve();
+		
+		public Controlleur(VueEditeur vue)
 		{
+			this.modeleEditeur = new Carte(false);
 			this.vueEditeur = vue;
-			this.modeleEditeur = modele;
 			tuileActive = Tuiles.vide;
 			localDAO = new EditeurDAO(this);
 		}
 		
-		public Tuile GetTuileActive() { return tuileActive; }
+		public Carte getCarte() { return modeleEditeur; }
 		
-		public TYPE_TUILES GetTypeTuileAuPoint(int x, int y)
+		public Tuile getTuileActive() { return tuileActive; }
+		
+		public TYPE_TUILES getTypeTuileAuPoint(int x, int y)
 		{
-			return modeleEditeur.GetTypeTuileAuPoint(x, y);
+			return modeleEditeur.getTypeTuileAuPoint(x, y);
 		}
 		
 		public void notifierActionChangerTuile(TYPE_TUILES tuile, bool enregistrer)
@@ -77,59 +81,48 @@ namespace ProjetEditeur
 		
 		public void notifierActionSauvegarderXML()
 		{		
-//			SaveFileDialog dialogueSauvegarde = new SaveFileDialog();  
-//		   	dialogueSauvegarde.Filter = "Carte|*.xml";  
-//		   	dialogueSauvegarde.Title = "Sauvegarder la carte en format XML";  
-//		   	dialogueSauvegarde.ShowDialog();  
-//		
-//		   	// If the file name is not an empty string open it for saving.  
-//		   	if(dialogueSauvegarde.FileName != "")  
-//		   	{
-//		   		File.WriteAllText(dialogueSauvegarde.FileName, modeleEditeur.ExporterXML());
-//		   	}
-			
-			localDAO.SauvegarderXML(modeleEditeur.ExporterXML());
+			localDAO.sauvegarderXML(modeleEditeur.exporterXML());
 		}
 		
 		public void notifierActionChargerXML()
 		{
-//			OpenFileDialog dialogueCharger = new OpenFileDialog();
-//			dialogueCharger.Filter = "Carte|*.xml";
-//			dialogueCharger.Title = "Charger la carte en format XML";  
-//			dialogueCharger.ShowDialog();
-//			
-//			if(dialogueCharger.FileName != "")  
-//		   	{
-//				Parser ps = Parser.getInstance();
-//				modeleEditeur.ImporterXML(
-//					ps.parserListeTuileXML(
-//						File.ReadAllText(
-//							dialogueCharger.FileName)));
-//				
-//				vueEditeur.AfficherCarte();
-//		   	}
-			modeleEditeur.ImporterXML(localDAO.ChargerXML());
-			vueEditeur.AfficherCarte();
+			modeleEditeur.importerXML(localDAO.chargerXML());
+			vueEditeur.afficherCarte(modeleEditeur);
 		}
 		
 		public void notifierActionPlacerTuile(int x, int y, bool enregistrer)
 		{
 			if (enregistrer) historique.memoriserAction(new CommandePlacerTuile(x, y, typeActif, this));
-			modeleEditeur.PlacerTuile(tuileActive, x, y);
-			vueEditeur.AfficherCarte();
+			modeleEditeur.placerTuile(tuileActive, x, y);
+			vueEditeur.afficherCarte(modeleEditeur);
+		}
+		
+		public void notifierActionClonerTuile(int n, bool enregistrer)
+		{
+			if (enregistrer) historique.memoriserAction(new CommandeClonerTuile(n, this));
+			
+			switch(n)
+			{
+				case 0:
+					tuileActive = reservePrototypes.creerSeaDoo();
+					break;
+				case 1:
+					tuileActive = reservePrototypes.creerStadeOlympique();
+					break;
+			}
 		}
 		
 		public void notifierActionRetour()
 		{
 			Console.WriteLine("notifierActionRetourner()");
-			Commande commande = historique.AbandonnerAction();
+			Commande commande = historique.abandonnerAction();
 			if(null != commande) commande.annuler();
 		}
 		
 		public void notifierActionRefaire()
 		{
 			Console.WriteLine("notifierActionRefaire()");
-			Commande commande = historique.RefaireAction();
+			Commande commande = historique.refaireAction();
 			if(null != commande) commande.executer();
 		}
 		

@@ -24,12 +24,12 @@ namespace ProjetEditeur
 		public Carte(bool hasard)
 		{
 			listeRangees = new List<Rangee>();
-			InitialiserCarte();
+			initialiserCarte();
 			if(hasard)
-				CreerCarteHasard();
+				creerCarteHasard();
 		}
 		
-		private void InitialiserCarte()
+		private void initialiserCarte()
 		{
 			for(int i = 0; i < HAUTEUR; i++)
 			{
@@ -37,16 +37,16 @@ namespace ProjetEditeur
 			}
 		}
 		
-		public void PlacerTuile(Tuile tuileAjoutee, int x, int y){
-			listeRangees[y].PlacerTuile(tuileAjoutee, x);
+		public void placerTuile(Tuile tuileAjoutee, int x, int y){
+			listeRangees[y].placerTuile(tuileAjoutee, x);
 		}
 		
-		public List<Rangee> GetListeRangees()
+		public List<Rangee> getListeRangees()
 		{
 			return listeRangees;
 		}
 		
-		private void CreerCarteHasard()
+		private void creerCarteHasard()
 		{
 			Random aleatoire = new Random();
 			
@@ -59,50 +59,50 @@ namespace ProjetEditeur
 					switch ( rng )
 					{
 						case 0:
-							this.PlacerTuile(new Foret(), x, y);
+							this.placerTuile(new Foret(), x, y);
 							break;
 						
 						case 1:
-							this.PlacerTuile(new Herbe(), x, y);
+							this.placerTuile(new Herbe(), x, y);
 							break;
 						
 						case 2:
-							this.PlacerTuile(new Plage(), x, y);
+							this.placerTuile(new Plage(), x, y);
 							break;
 						
 						case 3:
-							this.PlacerTuile(new Mer(), x, y);
+							this.placerTuile(new Mer(), x, y);
 							break;
 					}
 				}
 			}
 		}
 		
-		public TYPE_TUILES GetTypeTuileAuPoint(int x, int y)
+		public TYPE_TUILES getTypeTuileAuPoint(int x, int y)
 		{
-			return listeRangees[y].GetTypeTuile(x);
+			return listeRangees[y].getTypeTuile(x);
 		}
 		
-		public void ImporterXML(List<Tuile> listeTuiles)
+		public void importerXML(List<Tuile> listeTuiles)
 		{
 			for(int x = 0; x < LARGEUR ; x++ ) 
 			{
 				for(int y = 0; y < HAUTEUR ; y++ ) 
 				{
 					if(listeTuiles[x + (y * LARGEUR)] != null)
-						this.PlacerTuile(listeTuiles[x + (y * LARGEUR)], x, y);
+						this.placerTuile(listeTuiles[x + (y * LARGEUR)], x, y);
 					else
-						this.PlacerTuile(Tuiles.vide, x, y);
+						this.placerTuile(Tuiles.vide, x, y);
 				}
 			}
 		}
 		
-		public string ExporterXML()
+		public string exporterXML()
 		{
 			string chaineXML = "<carte>";
 			
 			foreach(Rangee rangee in listeRangees)
-				chaineXML += rangee.ExporterXML();
+				chaineXML += rangee.exporterXML();
 			
 			return chaineXML + "</carte>";
 		}

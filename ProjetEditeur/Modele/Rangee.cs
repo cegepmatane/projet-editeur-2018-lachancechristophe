@@ -23,10 +23,10 @@ namespace ProjetEditeur
 		{
 			listeTuiles = new List<Tuile>();
 			LARGEUR = l;
-			InitialiserRangee();
+			initialiserRangee();
 		}
 		
-		private void InitialiserRangee()
+		private void initialiserRangee()
 		{
 			for(int i = 0; i < LARGEUR; i++)
 			{
@@ -34,23 +34,23 @@ namespace ProjetEditeur
 			}
 		}
 		
-		public TYPE_TUILES GetTypeTuile(int x)
+		public TYPE_TUILES getTypeTuile(int x)
 		{
 			return listeTuiles[x].GetTypeTuile();
 		}
 		
-		public List<Tuile> GetListeTuile() { return listeTuiles; }
+		public List<Tuile> getListeTuile() { return listeTuiles; }
 		
-		public void PlacerTuile(Tuile tuilePlacee, int n){
+		public void placerTuile(Tuile tuilePlacee, int n){
 			listeTuiles[n] = tuilePlacee;
 		}
 		
-		public string ExporterXML()
+		public string exporterXML()
 		{
 			string chaineXML = "";
 			
 			foreach(Tuile tuile in listeTuiles)
-					chaineXML += tuile.ExporterXML();
+					chaineXML += tuile.exporterXML();
 			
 			return chaineXML;
 		}
